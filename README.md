@@ -1,3 +1,2 @@
 # SpotifyClone
-Clone do spotify feito por duas pessoas
-<h6>Teste</h6>
+Clone do spotify feito por Luis Henrique e Pedro Henrique com React e Tailwind
