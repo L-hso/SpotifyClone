@@ -1,7 +1,9 @@
+import SidebarRoot from "./components/sidebar/sidebarRoot"
+
 function App() {
   return (
     <>
-    <h1>Spotify-clone</h1>
+      <SidebarRoot />
     </>
   )
 }

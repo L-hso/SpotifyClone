@@ -1,0 +1,23 @@
+@import "../spotify-colors";
+
+#sidebar {
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  gap: 8px;
+  height: 100%;
+  width: 350px;
+}
+
+#sidebar * {
+  background-color: $spotify-cinza;
+  border-radius: 8px;
+}
+
+#sidebar_top {
+  height: 120px;
+}
+
+#sidebar_bottom {
+  height: 100%;
+}
