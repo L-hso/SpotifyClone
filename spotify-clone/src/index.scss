@@ -8,16 +8,27 @@
   box-sizing: border-box;
   text-decoration: none;
   list-style: none;
-  font-family: "Figtree", sans-serif;
+  font-family: "Figtree",sans-serif;
+
+  button{
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
 }
 
 #root {
-  display: flex;
-  justify-content: space-around;
+  
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  grid-template-rows: 1fr 75px;
+  gap: 6px;
+  
   height: 100vh;
   width: 100vw;
+  padding: 6px;
+
   color: $spotify-branco;
   background-color: $spotify-preto;
-  padding: 8px;
-  gap: 6px;
+  
 }

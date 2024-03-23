@@ -1,3 +1,4 @@
+import './player.scss';
 export function PlayerRoot({ children }) {
-  return <div>{children}</div>;
+  return <footer>{children}</footer>;
 }

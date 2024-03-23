@@ -11,11 +11,11 @@ function App() {
       </Sidebar.Root>
 
       <Main.Root>
-        conteudo
+
       </Main.Root>
 
       <Player.Root>
-        player
+
       </Player.Root>
     </>
   );
