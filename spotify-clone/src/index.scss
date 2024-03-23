@@ -8,13 +8,16 @@
   box-sizing: border-box;
   text-decoration: none;
   list-style: none;
-  
   font-family: "Figtree", sans-serif;
 }
 
 #root {
+  display: flex;
+  justify-content: space-around;
   height: 100vh;
   width: 100vw;
   color: $spotify-branco;
   background-color: $spotify-preto;
+  padding: 8px;
+  gap: 6px;
 }
