@@ -10,13 +10,9 @@ function App() {
         <Sidebar.Bottom />
       </Sidebar.Root>
 
-      <Main.Root>
+      <Main.Root></Main.Root>
 
-      </Main.Root>
-
-      <Player.Root>
-
-      </Player.Root>
+      <Player.Root></Player.Root>
     </>
   );
 }
