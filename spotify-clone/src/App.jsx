@@ -1,4 +1,5 @@
 import { Main } from "./components/main/Widget";
+import { Player } from "./components/playerControl/Widget";
 import { Sidebar } from "./components/sidebar/Widget";
 
 function App() {
@@ -10,8 +11,12 @@ function App() {
       </Sidebar.Root>
 
       <Main.Root>
-        teste
+        conteudo
       </Main.Root>
+
+      <Player.Root>
+        player
+      </Player.Root>
     </>
   );
 }
