@@ -1,11 +1,26 @@
-import './sidebar.scss';
+import { GoHomeFill, GoHome } from "react-icons/go";
+import { CiSearch } from "react-icons/ci";
 
-function SidebarTop() {
+export function SidebarTop() {
   return (
-    <div id="sidebar_top">
-      sidebarTop
-    </div>
+    <menu id="sidebar_top">
+      <li>
+        <a href="#">
+          <GoHomeFill color="#fff" size={24} style={{ background: "none" }} />
+          Início
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <CiSearch
+            color="#fff"
+            size={24}
+            style={{ background: "none" }}
+            strokeWidth={0.5}
+          />
+          Buscar
+        </a>
+      </li>
+    </menu>
   );
 }
-
-export default SidebarTop

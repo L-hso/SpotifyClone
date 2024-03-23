@@ -1,14 +1,5 @@
-import './sidebar.scss';
-import SidebarBottom from './sidebarBottom';
-import SidebarTop from './sidebarTop';
+import "./sidebar.scss";
 
-function SidebarRoot() {
-  return (
-    <div id="sidebar">
-      <SidebarTop />
-      <SidebarBottom />
-    </div>
-  );
+export function SidebarRoot({ children }) {
+  return <aside id="sidebar">{children}</aside>;
 }
-
-export default SidebarRoot

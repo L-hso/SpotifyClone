@@ -1,23 +1,107 @@
 @import "../spotify-colors";
 
+//função que define o comportamento da flexbox
+
+@mixin flexBox($just, $align) {
+  display: flex;
+  justify-content: $just;
+  align-items: $align;
+}
+
 #sidebar {
   display: flex;
   flex-direction: column;
   padding: 8px;
-  gap: 8px;
+  gap: 6px;
   height: 100%;
   width: 350px;
-}
 
-#sidebar * {
-  background-color: $spotify-cinza;
-  border-radius: 8px;
+  > * {
+    background-color: $spotify-cinza;
+    border-radius: 8px;
+  }
 }
 
 #sidebar_top {
-  height: 120px;
+  min-height: 12.5%;
+  padding: 0.5rem 0.35rem;
+
+  li {
+
+    //provisório até definir o main e controle de estado da página
+
+    &:first-child a{
+      color: $spotify-branco;
+    }
+    //--------------//
+
+    a {
+      @include flexBox(start, center);
+
+      font-size: 0.85rem;
+      font-weight: 600;
+
+      
+      color: darken($color: $spotify-branco, $amount: 15);
+
+      gap: 1rem;
+      padding: 0.5rem;
+      border-radius: 8px;
+      
+      &:hover {
+        background-color: lighten($color: $spotify-cinza, $amount: 10);
+      }
+    }
+  }
 }
 
 #sidebar_bottom {
-  height: 100%;
+  position: relative;
+  height: 87.5%;
+  overflow: hidden;
+  
+  // "controlador" da sidebar_bottom
+  header{
+    @include flexBox(space-between, space-between);
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+
+    height: 17.5%;
+    width: 100%;
+
+    padding: 1rem 0.85rem 0.5rem 0.85rem;
+    box-shadow: 8px 0 8px 8px rgba(0,0,0,0.22);
+
+
+    // cabeçalho / tags
+    div {
+      @include flexBox(space-between, center);
+      gap: 1rem;
+      font-weight: 600;
+    }
+
+    #tags{
+      @include flexBox(space-between, center);
+
+      width: 100%;
+      font-size: 0.75rem;
+      font-weight: 500;
+
+      li{
+        padding: 0.35rem 0.65rem;
+        border-radius: 9999px;
+        background-color: lighten($color: $spotify-cinza, $amount: 8); 
+        
+        transition: 0.23s all ease;
+        &:hover{
+          color: $spotify-preto;
+          background-color: $spotify-branco;
+          font-weight: 600;
+        }
+
+        cursor: pointer;
+      }
+    }
+  }
 }

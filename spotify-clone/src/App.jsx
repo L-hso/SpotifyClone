@@ -1,11 +1,14 @@
-import SidebarRoot from "./components/sidebar/sidebarRoot"
+import { Sidebar } from "./components/sidebar/Widget";
 
 function App() {
   return (
     <>
-      <SidebarRoot />
+      <Sidebar.Root>
+        <Sidebar.Top />
+        <Sidebar.Bottom />
+      </Sidebar.Root>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
