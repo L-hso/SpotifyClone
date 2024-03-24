@@ -15,44 +15,44 @@ footer {
     gap: 8px;
 
     // Componete com os Botões de controle
-    > #player_control {
+    #player_control {
       display: flex;
       align-items: center;
-  
+
       gap: 20px;
-  
+
       // Estilo comum dos botões
-      > * {
+      button {
         color: $spotify-branco;
         opacity: 0.6;
-        width: 22px;
       }
-  
+
       > *:hover {
         cursor: pointer;
         opacity: 1;
       }
-  
+
       // Primeiro e último elementos do player (Shuffle e Loop, respectivamente)
-      > :nth-child(1), > :nth-child(5) {
+      > :nth-child(1),
+      > :nth-child(5) {
         opacity: 0.3;
       }
-      > :nth-child(1), > :nth-child(5):hover {
+
+      > :nth-child(1):hover,
+      > :nth-child(5):hover {
         opacity: 0.5;
       }
-  
+
       // Botão Play/Pause
       > :nth-child(3) {
-        width: 32px;
-        height: 32px;
+        transition: 0.23s transform;
       }
-  
+
       > :nth-child(3):hover {
         transform: scale(110%);
       }
-
     }
-    // Barra de progresso e duração a música
+    // Barra de progresso e duração da música
     #progress_info {
       display: flex;
       gap: 8px;
@@ -60,11 +60,25 @@ footer {
       font-size: 12px;
 
       #progress_bar {
-        background-color: $spotify-branco;
-        opacity: 0.5;
-        width: 280px;
+        position: relative;
+        background-color: darken($color: $spotify-branco, $amount: 45);
+
+        width: 500px;
         height: 5px;
         border-radius: 16px;
+        
+
+        //Use as informações do elemento audio via dom, e defina a width baseado nessas informações
+
+        &::before {
+          content: "";
+          position: absolute;
+          left: 0;
+          width: 55%;
+          height: 100%;
+          border-radius: inherit;
+          background: $spotify-branco;
+        }
       }
     }
   }

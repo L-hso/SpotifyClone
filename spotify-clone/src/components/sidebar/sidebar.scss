@@ -12,8 +12,9 @@
   display: flex;
   flex-direction: column;
   row-gap: 6px;
-
+  overflow: hidden;
   grid-column: 1/2;
+
   > * {
     background-color: $spotify-cinza;
     border-radius: 8px;
@@ -51,29 +52,25 @@
 }
 
 #sidebar_bottom {
-  position: relative;
+  @include flexBox(space-between, center);
+  flex-direction: column;
   height: 100%;
+  position: relative;
   overflow: hidden;
-
   // "controlador" da sidebar_bottom
   header {
-    @include flexBox(space-between, start);
+    @include flexBox(center, start);
     flex-direction: column;
+
     gap: 1rem;
-    color: $spotify-branco;
+    width: 100%;
+    padding: 1rem 0.85rem 0.5rem 0.85rem;
+
+    box-shadow: 8px 0 8px 8px rgba(0, 0, 0, 0.22);
     overflow: hidden;
 
-    position: absolute;
-    top: 0;
-
-    min-height: 25%;
-    width: 100%;
-
-    padding: 1rem 0.85rem 0.5rem 0.85rem;
-    box-shadow: 8px 0 8px 8px rgba(0, 0, 0, 0.22);
-
     // cabeçalho / tags
-    #library {
+    #library_title {
       @include flexBox(space-between, center);
 
       width: 100%;
@@ -85,74 +82,141 @@
       }
     }
 
-    #filter_container {
+    #tags {
       @include flexBox(start, center);
-      width: 100%;
-      flex-wrap: wrap;
-      gap: 0.5rem;
 
-      #tags {
-        @include flexBox(start, center);
+      gap: 0.75rem;
+      overflow: hidden;
 
-        gap: 0.75rem;
-        overflow: hidden;
+      font-size: 0.75rem;
+      font-weight: 500;
 
-        font-size: 0.75rem;
-        font-weight: 500;
+      li {
+        @include flexBox(center, center);
 
-        li {
-          @include flexBox(center, center);
+        text-wrap: nowrap;
 
-          text-wrap: nowrap;
+        height: 1.5rem;
+        padding: 0 0.65rem;
+        border-radius: 9999px;
+        background-color: lighten($color: $spotify-cinza, $amount: 8);
 
-          height: 1.5rem;
-          padding: 0 0.65rem;
-          border-radius: 9999px;
+        transition: 0.23s all ease;
+        cursor: pointer;
+
+        &:hover {
+          color: $spotify-preto;
+          background-color: $spotify-branco;
+          font-weight: 600;
+        }
+      }
+
+      #next_tags {
+        position: absolute;
+        right: 0;
+        background: linear-gradient(
+          to left,
+          $spotify-cinza,
+          90%,
+          rgba(0, 0, 0, 0)
+        );
+        height: 1.5rem;
+        width: 4rem;
+
+        button {
+          float: right;
+          margin-right: 0.85rem;
           background-color: lighten($color: $spotify-cinza, $amount: 8);
+          height: 1.5rem;
+          width: 1.5rem;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+  #library {
+    @include flexBox(start,center);
+    flex-direction: column;
+    width: 100%;
+    scrollbar-color: lighten($color: $spotify-cinza, $amount: 25) $spotify-cinza;
+    overflow: auto;
+    flex: 1;
+    
+    #search-select {
+      @include flexBox(space-between, center);
+      width: 100%;
+      padding: 0.5rem 0.85rem;
+      #search_filter {
+        @include flexBox(space-between, center);
 
-          transition: 0.23s all ease;
-          cursor: pointer;
+        position: relative;
 
-          &:hover {
-            color: $spotify-preto;
-            background-color: $spotify-branco;
-            font-weight: 600;
-          }
+        button {
+          position: absolute;
+          left: 0.25rem;
         }
 
-        #next_tags {
-          position: absolute;
-          right: 0;
-          background: linear-gradient(
-            to left,
-            $spotify-cinza,
-            90%,
-            rgba(0, 0, 0, 0)
-          );
-          height: 1.5rem;
-          width: 4rem;
+        input {
+          visibility: hidden;
+          width: 0;
+          height: 2rem;
+          padding-left: 1.75rem;
+          border: none;
+          outline: none;
+          background-color: lighten($color: $spotify-cinza, $amount: 8);
 
-          button {
-            float: right;
-            margin-right: 5px;
-            background-color: lighten($color: $spotify-cinza, $amount: 8);
-            height: 1.5rem;
-            width: 1.5rem;
-            border-radius: 50%;
+          transition: 0.23s all ease-in-out;
+
+          &[data-open="true"]{
+            visibility: visible;
+            width: 8.5rem;
           }
         }
       }
-      #search-select {
-        @include flexBox(space-between, center);
-        width: 100%;
 
-        select {
-          color: $spotify-branco;
-          outline: none;
-          border: 1px solid $spotify-grafite;
-          background: $spotify-cinza;
-          width: 8rem;
-          padding: 0.5rem 0.25rem;
+      #select {
+        width: 8rem;
+        height: 2rem;
+        padding: 0.5rem 0.25rem;
+
+        color: $spotify-branco;
+        background: $spotify-cinza;
+      }
+    }
+    
+    #library_database{
+      width:100%;
+      height: 100%;
+      flex: 1;
+
+      .library_data{
+        @include flexBox(start, center);
+
+        gap: 1rem;
+        width: 100%;
+        padding: 0.5rem 0.85rem;
+        &:hover{
+          background-color: lighten($color: $spotify-cinza, $amount: 8);
+        }
+        //icone
+        img{
+          max-width: calc(40px / 1rem * 1rem);
+          border-radius: 5px;
+          &[data-category="artist"]{
+            border-radius: 50%;
+          }
+        }
+
+        hgroup{
+          :first-child{
+            font-size:0.9rem;
+            font-weight: 500;
+          }
+          :last-child{
+            color: lighten($color: $spotify-cinza, $amount: 50);
+            font-size: 0.75rem;
+            margin-top: 0.1rem;
+          }
         }
       }
     }
