@@ -9,6 +9,7 @@
   text-decoration: none;
   list-style: none;
   font-family: "Figtree",sans-serif;
+  color: $spotify-branco;
 
   button{
     border: none;
@@ -18,7 +19,6 @@
 }
 
 #root {
-  
   display: grid;
   grid-template-columns: 350px 1fr;
   grid-template-rows: 1fr 75px;
@@ -30,5 +30,4 @@
 
   color: $spotify-branco;
   background-color: $spotify-preto;
-  
 }

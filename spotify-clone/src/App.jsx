@@ -1,5 +1,5 @@
 import { Main } from "./components/main/Widget";
-import { Player } from "./components/playerControl/Widget";
+import { Footer } from "./components/footer/Widget";
 import { Sidebar } from "./components/sidebar/Widget";
 
 function App() {
@@ -14,9 +14,11 @@ function App() {
 
       </Main.Root>
 
-      <Player.Root>
-
-      </Player.Root>
+      <Footer.Root>
+        <Footer.Control>
+          <Footer.Progress />
+        </Footer.Control>
+      </Footer.Root>
     </>
   );
 }
