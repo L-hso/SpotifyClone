@@ -90,6 +90,10 @@
 
       font-size: 0.75rem;
       font-weight: 500;
+      
+      &[data-actualTag='all'] li{
+        display: block;
+      }
 
       li {
         @include flexBox(center, center);
@@ -104,10 +108,13 @@
         transition: 0.23s all ease;
         cursor: pointer;
 
-        &:hover {
+        &[data-ativo=true] {
           color: $spotify-preto;
           background-color: $spotify-branco;
           font-weight: 600;
+        }
+        &[data-ativo=false]{
+          display:none;
         }
       }
 
