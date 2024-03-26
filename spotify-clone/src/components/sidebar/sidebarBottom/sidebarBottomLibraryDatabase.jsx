@@ -5,10 +5,10 @@ export function LibraryDatabase({ actualFilter }) {
     <ul id="library_database">
       {Object.entries(FakeData).map(([key, data]) => {
         //verificação da pesquisa de titulo
-
+        
         let parsedTitle = data.title
-          .toLowerCase()
-          .includes(actualFilter.search.toLowerCase());
+          .toLowerCase().split(' ').join('')
+          .includes(actualFilter.search);  
 
         if (
           (actualFilter.tag == data.category && parsedTitle) ||

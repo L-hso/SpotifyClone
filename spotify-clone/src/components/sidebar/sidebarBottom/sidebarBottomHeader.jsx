@@ -1,16 +1,18 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { FiPlus } from "react-icons/fi";
 import { IoIosArrowForward, IoMdArrowForward } from "react-icons/io";
 import { LuLibrary } from "react-icons/lu";
 
 export function SidebarBottomHeader({ setActualFilter }) {
+
   const TagsMenuRef = useRef(null);
+  
   function setTag(givedTag) {
     setActualFilter((state) => {
       return { ...state, tag: state.tag == givedTag ? "all" : givedTag };
     });
-    TagsMenuRef.current.dataset.actualTag =
-      TagsMenuRef.current.dataset.actualTag == givedTag ? "all" : givedTag;
+    TagsMenuRef.current.dataset.actualtag =
+      TagsMenuRef.current.dataset.actualtag == givedTag ? "all" : givedTag;
   }
 
   return (
@@ -32,28 +34,27 @@ export function SidebarBottomHeader({ setActualFilter }) {
           </button>
         </div>
       </div>
-      <menu ref={el =>TagsMenuRef.current=el} data-actualTag="all" id="tags">
+      <menu ref={TagsMenuRef} data-actualtag="all" id="tags">
         <li
-          data-ativo={"artist" == TagsMenuRef.current.dataset.actualTag }
+          data-visivel={TagsMenuRef?.current?.actualtag=="all"}
+          data-ativo={"artist" == TagsMenuRef?.current?.dataset.actualtag}
           onClick={() => setTag("artist")}
         >
           Artistas
         </li>
         <li
-          data-ativo={"playlist" == TagsMenuRef.current.dataset.actualTag}
-          onClick={() => setTag("playlist")}
+        data-ativo={"playlist" == TagsMenuRef?.current?.dataset.actualtag}
+        onClick={() => setTag("playlist")}
         >
           Playlists
         </li>
         <li
-          data-ativo={"album" == TagsMenuRef.current.dataset.actualTag}
-          onClick={() => setTag("album")}
-        >
-          Albums
-        </li>
+        data-ativo={"album" == TagsMenuRef?.current?.dataset.actualtag}
+        onClick={() => setTag("album")}
+        >Albums</li>
         <li
-          data-ativo={"podcasts" == TagsMenuRef.current.dataset.actualTag}
-          onClick={() => setTag("podcasts")}
+        data-ativo={"podcasts" == TagsMenuRef?.current?.dataset.actualtag}
+        onClick={() => setTag("podcasts")}
         >
           Podcasts e programas
         </li>
