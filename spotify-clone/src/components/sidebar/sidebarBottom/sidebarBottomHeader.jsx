@@ -4,12 +4,11 @@ import { IoIosArrowForward, IoMdArrowForward } from "react-icons/io";
 import { LuLibrary } from "react-icons/lu";
 
 export function SidebarBottomHeader({ setActualFilter }) {
-
   const TagsMenuRef = useRef(null);
-  
+
   function setTag(givedTag) {
     setActualFilter((state) => {
-      return { ...state, tag: state.tag == givedTag ? "all" : givedTag };
+      return { ...state, tag: (state.tag == givedTag ? "all" : givedTag) };
     });
     TagsMenuRef.current.dataset.actualtag =
       TagsMenuRef.current.dataset.actualtag == givedTag ? "all" : givedTag;
@@ -36,25 +35,50 @@ export function SidebarBottomHeader({ setActualFilter }) {
       </div>
       <menu ref={TagsMenuRef} data-actualtag="all" id="tags">
         <li
-          data-visivel={TagsMenuRef?.current?.actualtag=="all"}
-          data-ativo={"artist" == TagsMenuRef?.current?.dataset.actualtag}
+          data-ativo={
+            "artist" == TagsMenuRef?.current?.dataset.actualtag
+              ? "true"
+              : TagsMenuRef?.current?.dataset.actualtag == "all"
+              ? "all"
+              : "false"
+          }
           onClick={() => setTag("artist")}
         >
           Artistas
         </li>
         <li
-        data-ativo={"playlist" == TagsMenuRef?.current?.dataset.actualtag}
-        onClick={() => setTag("playlist")}
+          data-ativo={
+            "playlist" == TagsMenuRef?.current?.dataset.actualtag
+              ? "true"
+              : TagsMenuRef?.current?.dataset.actualtag == "all"
+              ? "all"
+              : "false"
+          }
+          onClick={() => setTag("playlist")}
         >
           Playlists
         </li>
         <li
-        data-ativo={"album" == TagsMenuRef?.current?.dataset.actualtag}
-        onClick={() => setTag("album")}
-        >Albums</li>
+          data-ativo={
+            "album" == TagsMenuRef?.current?.dataset.actualtag
+              ? "true"
+              : TagsMenuRef?.current?.dataset.actualtag == "all"
+              ? "all"
+              : "false"
+          }
+          onClick={() => setTag("album")}
+        >
+          Albums
+        </li>
         <li
-        data-ativo={"podcasts" == TagsMenuRef?.current?.dataset.actualtag}
-        onClick={() => setTag("podcasts")}
+          data-ativo={
+            "podcast" == TagsMenuRef?.current?.dataset.actualtag
+              ? "true"
+              : TagsMenuRef?.current?.dataset.actualtag == "all"
+              ? "all"
+              : "false"
+          }
+          onClick={() => setTag("podcast")}
         >
           Podcasts e programas
         </li>

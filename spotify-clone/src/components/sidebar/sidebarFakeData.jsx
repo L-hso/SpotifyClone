@@ -35,6 +35,7 @@ export const FakeData = {
     title: "Flow Podcast",
     subtitle: "Podcast • Flow Podcast",
     dono: "flow_podcast",
+    category:"podcast",
     fixado: false,
     tocando: false,
   },

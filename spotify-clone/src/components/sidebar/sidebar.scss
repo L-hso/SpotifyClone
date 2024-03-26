@@ -83,6 +83,7 @@
         gap: 1rem;
       }
     }
+    
 
     #tags {
       @include flexBox(start, center);
@@ -94,10 +95,11 @@
       font-weight: 500;
 
 
+      
 
-
+      
       li {
-        @include flexBox(center, center);
+       @include flexBox(center, center);
 
         text-wrap: nowrap;
 
@@ -114,15 +116,15 @@
           background-color: $spotify-branco;
           font-weight: 600;
         }
-
-        &[data-visivel="true"] {
+  
+        &[data-ativo="all"]{
           display: flex;
-          background-color: lighten($color: $spotify-cinza, $amount: 8);
+        }
+        &[data-ativo="false"]{
+          display: none;
         }
         
-        &[data-ativo="false"] {
-          display: none;
-        }   
+          
       }
 
       #next_tags {
