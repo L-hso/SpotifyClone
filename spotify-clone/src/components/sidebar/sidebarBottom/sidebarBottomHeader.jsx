@@ -5,13 +5,33 @@ import { LuLibrary } from "react-icons/lu";
 
 export function SidebarBottomHeader({ setActualFilter }) {
   const TagsMenuRef = useRef(null);
-
+  const NextTagsRef = useRef(null);
   function setTag(givedTag) {
     setActualFilter((state) => {
-      return { ...state, tag: (state.tag == givedTag ? "all" : givedTag) };
+      return { ...state, tag: state.tag == givedTag ? "all" : givedTag };
     });
-    TagsMenuRef.current.dataset.actualtag =
-      TagsMenuRef.current.dataset.actualtag == givedTag ? "all" : givedTag;
+    
+
+    //Define a o filtro (tag) atual e a posição do botão de avançar
+    if(TagsMenuRef.current.dataset.actualtag == givedTag){
+      TagsMenuRef.current.dataset.actualtag = "all";
+      NextTagsRef.current.style.cssText = NextTagsRef.current.style.cssText =
+      "transform: scale(1); right: 0; display: block;";
+    } else {
+      TagsMenuRef.current.dataset.actualtag = givedTag;
+      NextTagsRef.current.style.cssText = NextTagsRef.current.style.cssText =
+      "display: none;";
+    }
+
+    
+  }
+
+  function setDataAtivo(tag) {
+    return tag == TagsMenuRef?.current?.dataset.actualtag
+      ? "true"
+      : ["all", undefined].includes(TagsMenuRef.current?.dataset.actualtag)
+      ? "all"
+      : "false";
   }
 
   return (
@@ -35,55 +55,49 @@ export function SidebarBottomHeader({ setActualFilter }) {
       </div>
       <menu ref={TagsMenuRef} data-actualtag="all" id="tags">
         <li
-          data-ativo={
-            "artist" == TagsMenuRef?.current?.dataset.actualtag
-              ? "true"
-              : TagsMenuRef?.current?.dataset.actualtag == "all"
-              ? "all"
-              : "false"
-          }
+          data-ativo={setDataAtivo("artist")}
           onClick={() => setTag("artist")}
         >
           Artistas
         </li>
         <li
-          data-ativo={
-            "playlist" == TagsMenuRef?.current?.dataset.actualtag
-              ? "true"
-              : TagsMenuRef?.current?.dataset.actualtag == "all"
-              ? "all"
-              : "false"
-          }
+          data-ativo={setDataAtivo("playlist")}
           onClick={() => setTag("playlist")}
         >
           Playlists
         </li>
-        <li
-          data-ativo={
-            "album" == TagsMenuRef?.current?.dataset.actualtag
-              ? "true"
-              : TagsMenuRef?.current?.dataset.actualtag == "all"
-              ? "all"
-              : "false"
-          }
-          onClick={() => setTag("album")}
-        >
+        <li data-ativo={setDataAtivo("album")} onClick={() => setTag("album")}>
           Albums
         </li>
         <li
-          data-ativo={
-            "podcast" == TagsMenuRef?.current?.dataset.actualtag
-              ? "true"
-              : TagsMenuRef?.current?.dataset.actualtag == "all"
-              ? "all"
-              : "false"
-          }
+          data-ativo={setDataAtivo("podcast")}
           onClick={() => setTag("podcast")}
         >
           Podcasts e programas
         </li>
-        <div id="next_tags">
-          <button>
+        <div id="next_tags" ref={NextTagsRef}>
+          <button
+            onClick={(e) => {
+              const menuref = TagsMenuRef.current;
+              if (menuref.scrollLeft == 0) {
+                menuref.scrollBy({
+                  top: 0,
+                  left: menuref.clientWidth,
+                  behavior: "smooth",
+                });
+                NextTagsRef.current.style.cssText =
+                  "transform: scale(-1); left: 0;";
+              } else {
+                menuref.scrollBy({
+                  top: 0,
+                  left: -1 * menuref.clientWidth,
+                  behavior: "smooth",
+                });
+                NextTagsRef.current.style.cssText =
+                  "transform: scale(1); right: 0;";
+              }
+            }}
+          >
             <IoIosArrowForward {...{ size: 14, color: "#fff" }} />
           </button>
         </div>
