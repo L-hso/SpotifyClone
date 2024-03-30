@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { CiSearch } from "react-icons/ci";
+import { SelectFilter } from "./selectFilter";
 
 export function SidebarBottomFilter({ setActualFilter }) {
   const searchFilterRef = useRef(null);
@@ -12,7 +13,6 @@ export function SidebarBottomFilter({ setActualFilter }) {
 
             search_filter.dataset.open =
               search_filter.dataset.open == "true" ? "false" : "true";
-            console.log(search_filter.dataset);
           }}
         >
           <CiSearch size={20} />
@@ -23,12 +23,20 @@ export function SidebarBottomFilter({ setActualFilter }) {
           type="text"
           name="search_filter"
           placeholder="Pesquise algo"
-          onChange={() =>{
-            setActualFilter(state=>{return{...state, search:(searchFilterRef.current.value.toLowerCase().split(' ').join(''))} })}
-          }
+          onChange={() => {
+            setActualFilter((state) => {
+              return {
+                ...state,
+                search: searchFilterRef.current.value
+                  .toLowerCase()
+                  .split(" ")
+                  .join(""),
+              };
+            });
+          }}
         />
       </div>
-      <div id="select"></div>
+      <SelectFilter {...{setActualFilter}}/>
     </div>
   );
 }

@@ -10,20 +10,19 @@ export function SidebarBottomHeader({ setActualFilter }) {
     setActualFilter((state) => {
       return { ...state, tag: state.tag == givedTag ? "all" : givedTag };
     });
-    
 
     //Define a o filtro (tag) atual e a posição do botão de avançar
-    if(TagsMenuRef.current.dataset.actualtag == givedTag){
+    if (TagsMenuRef.current.dataset.actualtag == givedTag) {
       TagsMenuRef.current.dataset.actualtag = "all";
+
       NextTagsRef.current.style.cssText = NextTagsRef.current.style.cssText =
-      "transform: scale(1); right: 0; display: block;";
+        "transform: scale(1); right: 0; display: block;";
     } else {
       TagsMenuRef.current.dataset.actualtag = givedTag;
-      NextTagsRef.current.style.cssText = NextTagsRef.current.style.cssText =
-      "display: none;";
-    }
 
-    
+      NextTagsRef.current.style.cssText = NextTagsRef.current.style.cssText =
+        "display: none;";
+    }
   }
 
   function setDataAtivo(tag) {
@@ -77,7 +76,7 @@ export function SidebarBottomHeader({ setActualFilter }) {
         </li>
         <div id="next_tags" ref={NextTagsRef}>
           <button
-            onClick={(e) => {
+            onClick={() => {
               const menuref = TagsMenuRef.current;
               if (menuref.scrollLeft == 0) {
                 menuref.scrollBy({

@@ -6,7 +6,7 @@ function App() {
   return (
     <>
       <Sidebar.Root>
-        <Sidebar.Top />
+        {/* <Sidebar.Top /> */}
         <Sidebar.Bottom />
       </Sidebar.Root>
 
