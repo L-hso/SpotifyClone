@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { CiSearch } from "react-icons/ci";
 import { SelectFilter } from "./selectFilter";
 
-export function SidebarBottomFilter({ setActualFilter }) {
+export function SidebarBottomFilter({ setActualFilter, setActualLayout }) {
   const searchFilterRef = useRef(null);
   return (
     <div id="search-select">
@@ -36,7 +36,7 @@ export function SidebarBottomFilter({ setActualFilter }) {
           }}
         />
       </div>
-      <SelectFilter {...{setActualFilter}}/>
+      <SelectFilter {...{setActualFilter, setActualLayout}}/>
     </div>
   );
 }

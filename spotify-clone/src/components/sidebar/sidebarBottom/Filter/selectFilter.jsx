@@ -6,8 +6,9 @@ import {
   IoMenu,
 } from "react-icons/io5";
 
-export function SelectFilter({ setActualFilter }) {
+export function SelectFilter({ setActualFilter, setActualLayout }) {
   const sortMenuRef = useRef(null);
+  const layoutMenuRef = useRef(null);
   const wrapperRef = useRef(null);
 
   function setFilter(menuState, sortFilter) {
@@ -16,7 +17,10 @@ export function SelectFilter({ setActualFilter }) {
     });
     sortMenuRef.current.dataset.sort = menuState;
   }
-
+  function setLayout(layoutOption) {
+    setActualLayout(layoutOption);
+    layoutMenuRef.current.dataset.layout = layoutOption;
+  }
   return (
     <div id="select_filter">
       <button
@@ -59,18 +63,52 @@ export function SelectFilter({ setActualFilter }) {
           ))}
         </menu>
 
-        <menu>
+        <menu data-layout="Lista" ref={layoutMenuRef}>
           <span>Ver como</span>
           {[
             ["Compacto", <IoMenu size={20} />],
             ["Lista", <IoListSharp size={17} />],
             ["Grade", <IoGridOutline size={17} />],
           ].map((value, index) => (
-            <li key={`menu-2-${index}`}>
-              <button>
-                {value[1]}
-                {value[0]}
+            <li
+              key={`menu-2-${index}`}
+              data-ativo={
+                layoutMenuRef.current != null
+                  ? layoutMenuRef.current.dataset.layout == value[0]
+                  : value[0] == "Lista"
+              }
+            >
+              <button onClick={() => setLayout(value[0])}>
+                <div>
+                  {value[1]}
+                  {value[0]}
+                </div>
+                {value[0] == layoutMenuRef.current?.dataset.layout ||
+              (layoutMenuRef.current == null && value[0] == "Lista") ? (
+                <IoCheckmark size={20} />
+              ) : (
+                <></>
+              )}
               </button>
+              
+
+              {value[0] == "Grade" &&
+              layoutMenuRef.current?.dataset.layout == "Grade" ? (
+                <input
+                  type="range"
+                  onChange={(e) => {
+                    document
+                      .querySelector("#library_database")
+                      .style.setProperty("--libraryDataWidth", `${e.currentTarget.value}%`);
+                      
+                  }}
+                  min={25}
+                  max={40}
+                  step={1}
+                />
+              ) : (
+                <></>
+              )}
             </li>
           ))}
         </menu>

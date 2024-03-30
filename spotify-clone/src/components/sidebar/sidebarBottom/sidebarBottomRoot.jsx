@@ -10,12 +10,14 @@ export function SidebarBottomRoot() {
     sortFilter: "data",
   });
 
+  const [actualLayout, setActualLayout] = useState("Lista");
+
   return (
     <section id="sidebar_bottom">
       <SidebarBottomHeader {...{ setActualFilter }} />
       <div id="library">
-        <SidebarBottomFilter {...{ setActualFilter }} />
-        <LibraryDatabase {...{ actualFilter }} />
+        <SidebarBottomFilter {...{ setActualFilter, setActualLayout }} />
+        <LibraryDatabase {...{ actualFilter, actualLayout }} />
       </div>
     </section>
   );

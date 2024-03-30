@@ -1,6 +1,6 @@
 import { FakeData } from "../sidebarFakeData";
-import { useEffect } from "react";
-export function LibraryDatabase({ actualFilter }) {
+
+export function LibraryDatabase({ actualFilter, actualLayout }) {
   function compareValuesToSort(a, b) {
     let formatedValueA;
     let formatedValueB;
@@ -20,7 +20,7 @@ export function LibraryDatabase({ actualFilter }) {
   }
 
   return (
-    <ul id="library_database">
+    <ul id="library_database" data-layout={actualLayout}>
       {Object.entries(FakeData)
         .sort(compareValuesToSort)
         .map(([key, data]) => {
@@ -39,6 +39,7 @@ export function LibraryDatabase({ actualFilter }) {
             return (
               <li
                 key={key}
+                data-layout={actualLayout}
                 className="library_data"
                 onClick={() => (FakeData[key]["access"] = Date.now() * -1)}
               >
@@ -49,7 +50,10 @@ export function LibraryDatabase({ actualFilter }) {
                 />
                 <hgroup>
                   <div>{data.title}</div>
-                  <div>{data.subtitle}</div>
+                  <div>
+                    <span>{actualLayout!="Compacto"?data.subtitle.split(" ")[0]:""}</span>{" "}
+                    <span>{data.subtitle.split(" ").length!=1 ?data.subtitle.split(" ").slice(1).join(" "):""+data.subtitle}</span>
+                  </div>
                 </hgroup>
               </li>
             );
