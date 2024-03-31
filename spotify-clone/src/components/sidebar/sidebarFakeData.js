@@ -27,7 +27,7 @@ export const FakeData = {
     "thumbnail":
       "https://i.scdn.co/image/ab67616d000048518c8edbab9129346ddac409b5",
     "title": "Tim Maia",
-    "subtitle": "Artist",
+    "subtitle": "Artista",
     "category": "artist",
     "owner": "tim_maia",
     "fixado": false,
@@ -75,7 +75,7 @@ export const FakeData = {
     "thumbnail":
       "https://i.scdn.co/image/ab67616d000048518c8edbab9129346ddac409b5",
     "title": "Tim Maia",
-    "subtitle": "Artist",
+    "subtitle": "Artista",
     "category": "artist",
     "owner": "tim_maia",
     "fixado": false,
@@ -123,7 +123,7 @@ export const FakeData = {
     "thumbnail":
       "https://i.scdn.co/image/ab67616d000048518c8edbab9129346ddac409b5",
     "title": "Tim Maia",
-    "subtitle": "Artist",
+    "subtitle": "Artista",
     "category": "artist",
     "owner": "tim_maia",
     "fixado": false,
@@ -171,7 +171,7 @@ export const FakeData = {
     "thumbnail":
       "https://i.scdn.co/image/ab67616d000048518c8edbab9129346ddac409b5",
     "title": "Tim Maia",
-    "subtitle": "Artist",
+    "subtitle": "Artista",
     "category": "artist",
     "owner": "tim_maia",
     "fixado": false,

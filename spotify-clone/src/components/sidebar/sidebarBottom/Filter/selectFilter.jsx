@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import {
   IoCheckmark,
   IoGridOutline,
@@ -17,10 +17,12 @@ export function SelectFilter({ setActualFilter, setActualLayout }) {
     });
     sortMenuRef.current.dataset.sort = menuState;
   }
+
   function setLayout(layoutOption) {
     setActualLayout(layoutOption);
     layoutMenuRef.current.dataset.layout = layoutOption;
   }
+
   return (
     <div id="select_filter">
       <button
@@ -32,7 +34,22 @@ export function SelectFilter({ setActualFilter, setActualLayout }) {
         {sortMenuRef.current?.dataset.sort ?? "Recentes"}{" "}
         <IoListSharp size={18} />
       </button>
-      <div id="menu_wrapper" ref={wrapperRef} data-open="false">
+      <div id="menu_wrapper" ref={wrapperRef} data-open="true">
+        {wrapperRef.current?.dataset.open == "true" ? (
+          <div
+            style={{
+              width: "100vw",
+              height: "100vh",
+              position: "absolute",
+              left: "0",
+              top: "0",
+              zIndex: "9999",
+              background: "red",
+            }}
+          />
+        ) : (
+          <></>
+        )}
         <menu data-sort="Recentes" ref={sortMenuRef}>
           <span>Classificar por</span>
 
@@ -84,27 +101,41 @@ export function SelectFilter({ setActualFilter, setActualLayout }) {
                   {value[0]}
                 </div>
                 {value[0] == layoutMenuRef.current?.dataset.layout ||
-              (layoutMenuRef.current == null && value[0] == "Lista") ? (
-                <IoCheckmark size={20} />
-              ) : (
-                <></>
-              )}
+                (layoutMenuRef.current == null && value[0] == "Lista") ? (
+                  <IoCheckmark size={20} />
+                ) : (
+                  <></>
+                )}
               </button>
-              
 
               {value[0] == "Grade" &&
               layoutMenuRef.current?.dataset.layout == "Grade" ? (
                 <input
                   type="range"
-                  onChange={(e) => {
-                    document
-                      .querySelector("#library_database")
-                      .style.setProperty("--libraryDataWidth", `${e.currentTarget.value}%`);
-                      
+                  onInput={(e) => {
+                    const library_database =
+                      document.querySelector("#library_database");
+
+                    library_database.style.setProperty(
+                      "--libraryDataWidth",
+                      `${e.currentTarget.value}%`
+                    );
+
+                    if (e.currentTarget.value < 33.4) {
+                      library_database.style.setProperty(
+                        "--textDisplayOnGrid",
+                        "none"
+                      );
+                    } else {
+                      library_database.style.setProperty(
+                        "--textDisplayOnGrid",
+                        "block"
+                      );
+                    }
                   }}
                   min={25}
-                  max={40}
-                  step={1}
+                  max={35}
+                  step={0.1}
                 />
               ) : (
                 <></>

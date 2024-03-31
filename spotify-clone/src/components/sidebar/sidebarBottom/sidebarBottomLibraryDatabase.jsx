@@ -51,8 +51,14 @@ export function LibraryDatabase({ actualFilter, actualLayout }) {
                 <hgroup>
                   <div>{data.title}</div>
                   <div>
-                    <span>{actualLayout!="Compacto"?data.subtitle.split(" ")[0]:""}</span>{" "}
-                    <span>{data.subtitle.split(" ").length!=1 ?data.subtitle.split(" ").slice(1).join(" "):""+data.subtitle}</span>
+                    <span>
+                      {actualLayout != "Compacto"
+                        ? data.subtitle.split(" ")[0]
+                        : ""}
+                    </span>{" "}
+                    <span>
+                      {actualLayout!="Compacto"? data.subtitle.split(" ").slice(1).join(" "): "• " + data.subtitle.split(" ").slice(0, 1)}
+                    </span>
                   </div>
                 </hgroup>
               </li>

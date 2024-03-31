@@ -283,20 +283,22 @@
       height: 100%;
       flex: 1;
       
-      grid-template-columns: repeat(auto-fit, minmax(var(--libraryDataWidth), 1fr));
+      
 
       &[data-layout="Grade"] {
         display:grid;
-        
+        grid-template-columns: repeat(auto-fit, minmax(var(--libraryDataWidth), 1fr));
+        grid-auto-rows: min-content;
       }
 
       .library_data {
         @include flexBox(start, center);
+        gap:1rem;
         width: 100%;
-        gap: 1rem;
-        
         padding: 0.5rem;
+
         cursor: pointer;
+        
         &:hover {
           background-color: lighten($color: $spotify-cinza, $amount: 8);
         }
@@ -305,6 +307,7 @@
           img {
             display: none;
           }
+
           hgroup {
             > * {
               display: inline-block;
@@ -322,11 +325,18 @@
 
         &[data-layout="Grade"] {
           align-items: start;
+          justify-content: center;
+
           flex-direction: column;
           
           img {
             min-width: 100%;
           }
+
+          hgroup{
+            display: var(--textDisplayOnGrid);
+          }
+          
         }
 
         //icone
