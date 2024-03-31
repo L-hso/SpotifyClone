@@ -35,6 +35,7 @@ export function SelectFilter({ setActualFilter, setActualLayout }) {
         <IoListSharp size={18} />
       </button>
       <div id="menu_wrapper" ref={wrapperRef} data-open="true">
+        
         {wrapperRef.current?.dataset.open == "true" ? (
           <div
             style={{
