@@ -8,20 +8,25 @@
 
 // "controlador" da sidebar_bottom
 header {
+  --sidebarBottomHeaderShadow: none;
+  
   @include flexBox(center, start);
   flex-direction: column;
+
 
   gap: 1rem;
   width: 100%;
   padding: 1rem 0.85rem 0.5rem 0.85rem;
 
-  box-shadow: 8px 0 8px 8px rgba(0, 0, 0, 0.22);
+  box-shadow: var(--sidebarBottomHeaderShadow);
   overflow: hidden;
 
-  // cabeçalho / tags
+
+  z-index: 12;
+  // cabeçalho
   #library_title {
     @include flexBox(space-between, center);
-
+    flex:1;
     width: 100%;
     font-weight: 600;
 
@@ -30,61 +35,78 @@ header {
       gap: 1rem;
     }
   }
+  
+  #tagsAndNextButtonWrapper{
+    @include flexBox(center, center);
+    max-width: calc(350px - 2 * 0.85rem);
+    position: relative;
 
-  #tags {
-    @include flexBox(start, center);
+    
+    #tags {
+      @include flexBox(start, center);
+      
+      gap: 0.75rem;
+      overflow: hidden;
+  
+      font-size: 0.75rem;
+      font-weight: 500;
+  
+      width: 350px; 
+      
 
-    gap: 0.75rem;
-    overflow: hidden;
-
-    font-size: 0.75rem;
-    font-weight: 500;
-
-    width: 100%;
-
-    li {
-      @include flexBox(center, center);
-
-      text-wrap: nowrap;
-
-      height: 1.5rem;
-      padding: 0.15rem 0.85rem;
-      border-radius: 9999px;
-      background-color: lighten($color: $spotify-cinza, $amount: 8);
-
-      transition: 0.23s all ease;
-      cursor: pointer;
-
-      &[data-ativo="true"] {
-        color: $spotify-preto;
-        background-color: $spotify-branco;
-        font-weight: 600;
-
-        display: flex;
-      }
-
-      &[data-ativo="all"] {
-        display: flex;
-
-        &:hover {
-          background-color: lighten($color: $spotify-cinza, $amount: 13);
+      li {
+        @include flexBox(center, center);
+  
+        text-wrap: nowrap;
+  
+        height: 1.5rem;
+        padding: 0.15rem 0.85rem;
+        border-radius: 9999px;
+        background-color: lighten($color: $spotify-cinza, $amount: 8);
+  
+        transition: 0.23s all ease;
+        cursor: pointer;
+  
+        &[data-ativo="true"] {
+          color: $spotify-preto;
+          background-color: $spotify-branco;
+          font-weight: 600;
+  
+          display: flex;
         }
-      }
-
-      &[data-ativo="false"] {
-        display: none;
+  
+        &[data-ativo="all"] {
+          display: flex;
+  
+          &:hover {
+            background-color: lighten($color: $spotify-cinza, $amount: 13);
+          }
+        }
+  
+        &[data-ativo="false"] {
+          display: none;
+        }
       }
     }
 
     #next_tags {
+      --actualPositionLeft: none;
+      --actualPositionRight: 0;
+      --scale: 1;
+
       position: absolute;
-      right: 0;
+      left: var(--actualPositionLeft);
+      right: var(--actualPositionRight);
+
+      transform: scaleX(var(--scale));
+
       background: linear-gradient(
         to left,
         $spotify-cinza,
         90%,
         rgba(0, 0, 0, 0)
       );
+
       height: 1.5rem;
       width: 4rem;
 
@@ -98,4 +120,5 @@ header {
       }
     }
   }
+  
 }

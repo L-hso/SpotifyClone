@@ -17,10 +17,11 @@
   #library {
     @include flexBox(start, center);
     flex-direction: column;
+    flex: 1;
     width: 100%;
+    
     scrollbar-color: lighten($color: $spotify-cinza, $amount: 25) $spotify-cinza;
     overflow: auto;
-    flex: 1;
 
     #search-select {
       @include flexBox(space-between, center);

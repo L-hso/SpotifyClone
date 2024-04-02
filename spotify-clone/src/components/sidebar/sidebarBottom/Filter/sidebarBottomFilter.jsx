@@ -6,8 +6,8 @@ export function SidebarBottomFilter({ setActualFilter, setActualLayout }) {
   const searchFilterRef = useRef(null);
   return (
     <div id="search-select">
-      <SearchFilter {...{searchFilterRef}}/>
-      <SortFilterAndLayoutController {...{setActualFilter, setActualLayout}}/>
+      <SearchFilter {...{ searchFilterRef, setActualFilter }}/>
+      <SortFilterAndLayoutController {...{ setActualFilter, setActualLayout }}/>
     </div>
   );
 }

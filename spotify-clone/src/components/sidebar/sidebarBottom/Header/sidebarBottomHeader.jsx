@@ -34,7 +34,7 @@ export function SidebarBottomHeader({ setActualFilter }) {
   }
 
   return (
-    <header>
+    <header id="sidebarBottomHeader">
       <div id="library_title">
         <div>
           <button>
@@ -52,6 +52,8 @@ export function SidebarBottomHeader({ setActualFilter }) {
           </button>
         </div>
       </div>
+
+      <div id="tagsAndNextButtonWrapper">
       <menu ref={TagsMenuRef} data-actualtag="all" id="tags">
         
         {[
@@ -69,7 +71,9 @@ export function SidebarBottomHeader({ setActualFilter }) {
           </li>
         ))}
 
-        <div id="next_tags" ref={NextTagsRef}>
+        
+      </menu>
+      <div id="next_tags" ref={NextTagsRef}>
           <button
             onClick={() => {
               const menuref = TagsMenuRef.current;
@@ -79,23 +83,25 @@ export function SidebarBottomHeader({ setActualFilter }) {
                   left: menuref.clientWidth,
                   behavior: "smooth",
                 });
-                NextTagsRef.current.style.cssText =
-                  "transform: scale(-1); left: 0;";
+                NextTagsRef.current.style.setProperty("--actualPositionLeft", 0);
+                NextTagsRef.current.style.setProperty("--actualPositionRight", null);
+                NextTagsRef.current.style.setProperty("--scale", -1);
               } else {
                 menuref.scrollBy({
                   top: 0,
                   left: -1 * menuref.clientWidth,
                   behavior: "smooth",
                 });
-                NextTagsRef.current.style.cssText =
-                  "transform: scale(1); right: 0;";
+                NextTagsRef.current.style.setProperty("--actualPositionRight", 0);
+                NextTagsRef.current.style.setProperty("--actualPositionLeft", null);
+                NextTagsRef.current.style.setProperty("--scale", 1);
               }
             }}
           >
             <IoIosArrowForward {...{ size: 14, color: "#fff" }} />
           </button>
         </div>
-      </menu>
+      </div>
     </header>
   );
 }

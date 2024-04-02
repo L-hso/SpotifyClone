@@ -16,7 +16,23 @@ export function SidebarBottomRoot() {
   return (
     <section id="sidebar_bottom">
       <SidebarBottomHeader {...{ setActualFilter }} />
-      <div id="library">
+      <div
+        id="library"
+        onScroll={(e) => {
+          if (e.currentTarget.scrollTop != 0) {
+            document
+              .querySelector("#sidebarBottomHeader")
+              .style.setProperty(
+                "--sidebarBottomHeaderShadow",
+                "8px 0 4px 8px rgba(0, 0, 0, 0.33)"
+              );
+          } else {
+            document
+              .querySelector("#sidebarBottomHeader")
+              .style.setProperty("--sidebarBottomHeaderShadow", "none");
+          }
+        }}
+      >
         <SidebarBottomFilter {...{ setActualFilter, setActualLayout }} />
         <LibraryDatabase {...{ actualFilter, actualLayout }} />
       </div>

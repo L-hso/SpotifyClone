@@ -1,11 +1,12 @@
+import "./libraryDatabase.scss";
 import { IoPlay } from "react-icons/io5";
 import { FakeData } from "../../sidebarFakeData";
-import "./libraryDatabase.scss";
 
 export function LibraryDatabase({ actualFilter, actualLayout }) {
   function compareValuesToSort(a, b) {
     let formatedValueA;
     let formatedValueB;
+
     if (typeof a == "string") {
       formatedValueA = a[1][actualFilter.sortFilter].toUpperCase();
       formatedValueB = b[1][actualFilter.sortFilter].toUpperCase();
@@ -28,15 +29,23 @@ export function LibraryDatabase({ actualFilter, actualLayout }) {
         .map(([key, data]) => {
           //verificação da pesquisa de titulo
 
-          let parsedTitle = data.title
-            .toLowerCase()
-            .split(" ")
-            .join("")
-            .includes(actualFilter.search);
+          let parsedTitle =
+            data.title
+              .toLowerCase()
+              .split(" ")
+              .join("")
+              .includes(actualFilter.search);
+
+            let parsedSubtitle = data.subtitle
+              .toLowerCase()
+              .split(" ")
+              .slice(2)
+              .join("")
+              .includes(actualFilter.search);
 
           if (
-            (actualFilter.tag == data.category && parsedTitle) ||
-            (actualFilter.tag == "all" && parsedTitle)
+            (actualFilter.tag == data.category && (parsedTitle || parsedSubtitle)) ||
+            (actualFilter.tag == "all" && (parsedTitle || parsedSubtitle))
           ) {
             return (
               <li
@@ -47,12 +56,12 @@ export function LibraryDatabase({ actualFilter, actualLayout }) {
               >
                 <div id="thumbnailAndPlayButtonWrapper">
                   <img
-                    src={data.thumbnail} 
+                    src={data.thumbnail}
                     alt="thumbnail"
                     data-category={data.category}
-                  /> 
+                  />
                   <button className="playButton">
-                    <IoPlay size={25} fill={"#2e2e2e"}/>
+                    <IoPlay size={25} fill={"#2e2e2e"} />
                   </button>
                 </div>
                 <hgroup>

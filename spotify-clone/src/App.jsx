@@ -1,6 +1,7 @@
 import { Main } from "./components/main/Widget";
 import { Footer } from "./components/footer/Widget";
 import { Sidebar } from "./components/sidebar/Widget";
+import { LayoutSizeController } from "./components/layoutSizeController/layoutSizeController";
 
 function App() {
   return (
@@ -9,7 +10,7 @@ function App() {
         {/* <Sidebar.Top /> */}
         <Sidebar.Bottom />
       </Sidebar.Root>
-
+      <LayoutSizeController/>
       <Main.Root></Main.Root>
 
       <Footer.Root>

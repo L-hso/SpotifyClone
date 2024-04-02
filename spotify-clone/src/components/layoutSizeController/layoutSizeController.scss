@@ -1,0 +1,33 @@
+@import "../spotify-colors";
+#LayoutSizeController {
+  background: $spotify-preto;
+  position: relative;
+  cursor: grab;
+  &:active {
+    &::after {
+      opacity: 1;
+    }
+    cursor: grabbing;
+  }
+  &::after {
+    content: "";
+    width: .75px;
+    height: 100%;
+    
+    background: $spotify-branco;
+
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
+    opacity: 0;
+    transition: opacity 0.33s;
+  }
+
+  &:hover {
+    background: lighten($color: $spotify-preto, $amount: 5);
+    &::after {
+      opacity: 1;
+    }
+  }
+}

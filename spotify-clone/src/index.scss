@@ -19,10 +19,11 @@
 }
 
 #root {
+  --actualSidebarWidth: 350px;
   display: grid;
-  grid-template-columns: 350px 1fr;
+  grid-template-columns: var(--actualSidebarWidth) 12.5px 1fr;
   grid-template-rows: 1fr 10%;
-  gap: 6px;
+  row-gap: 6px;
   
   height: 100vh;
   width: 100vw;
