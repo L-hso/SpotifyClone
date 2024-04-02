@@ -1,0 +1,33 @@
+@import "../../spotify-colors";
+
+@mixin flexBox($just, $align){
+  display: flex;
+  justify-content: $just;
+  align-items: $align;
+}
+#sidebar_bottom {
+  @include flexBox(space-between, center);
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+
+  
+
+  #library {
+    @include flexBox(start, center);
+    flex-direction: column;
+    width: 100%;
+    scrollbar-color: lighten($color: $spotify-cinza, $amount: 25) $spotify-cinza;
+    overflow: auto;
+    flex: 1;
+
+    #search-select {
+      @include flexBox(space-between, center);
+      width: 100%;
+      padding: 0.75rem 0.85rem;
+    }
+
+    
+  }
+}

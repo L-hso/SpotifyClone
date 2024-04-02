@@ -1,0 +1,35 @@
+@import "../../../spotify-colors";
+
+@mixin flexBox($just, $align){
+  display: flex;
+  justify-content: $just;
+  align-items: $align;
+}
+
+#search_filter {
+  @include flexBox(space-between, center);
+
+  position: relative;
+
+  button {
+    position: absolute;
+    left: 0.25rem;
+  }
+
+  input {
+    visibility: hidden;
+    width: 0;
+    height: 1.75rem;
+    padding-left: 1.75rem;
+    border: none;
+    outline: none;
+    background-color: lighten($color: $spotify-cinza, $amount: 8);
+    font-size: 0.8rem;
+    transition: 0.23s all ease-in-out;
+
+    &[data-open="true"] {
+      visibility: visible;
+      width: 7.5rem;
+    }
+  }
+}

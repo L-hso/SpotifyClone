@@ -1,0 +1,95 @@
+@import '../../../spotify-colors';
+
+@mixin flexBox($just, $align){
+  display: flex;
+  justify-content: $just;
+  align-items: $align;
+}
+
+#select_filter {
+  position: relative;
+  z-index: 9999;
+  > :first-child {
+    @include flexBox(center, center);
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    color: darken($color: $spotify-branco, $amount: 18);
+    transition: 0.23s all;
+
+    cursor: pointer;
+  }
+
+  > :first-child:hover {
+    transform: scale(1.05);
+    color: $spotify-branco;
+  }
+
+  background: $spotify-cinza;
+  #menu_wrapper {
+    display: none;
+
+    &[data-open="true"] {
+      display: flex;
+      justify-content: start;
+      align-items: start;
+    }
+
+    flex-direction: column;
+    gap: 1rem;
+
+    position: absolute;
+    right: 0;
+    top: 125%;
+    padding: 0.75rem 1rem;
+    width: 12.5rem;
+    border-radius: 0.5rem;
+    background-color: lighten($color: $spotify-cinza, $amount: 8);
+    menu {
+      width: 100%;
+
+      span {
+        display: inline-block;
+        padding-bottom: 0.5rem;
+      }
+      &:first-child li {
+        @include flexBox(space-between, center);
+      }
+      &:last-child li {
+        button {
+          @include flexBox(space-between, center);
+          div {
+            @include flexBox(start, center);
+            gap: 1rem;
+          }
+        }
+        input[type="range"] {
+          width: 100%;
+        }
+      }
+      li {
+        &:hover * {
+          color: $spotify-verde;
+        }
+        //filtro e layout quando ativados
+
+        &[data-ativo="true"] * {
+          color: $spotify-verde;
+        }
+
+        button {
+          @include flexBox(start, center);
+          gap: 1rem;
+          padding: 0.65rem 0;
+          width: 100%;
+          text-wrap: nowrap;
+          font-weight: 500;
+        }
+      }
+
+      span {
+        font-size: 0.75rem;
+        color: darken($color: $spotify-branco, $amount: 35);
+      }
+    }
+  }
+}

@@ -1,4 +1,5 @@
-import { useEffect, useRef } from "react";
+import "./header.scss";
+import { useRef } from "react";
 import { FiPlus } from "react-icons/fi";
 import { IoIosArrowForward, IoMdArrowForward } from "react-icons/io";
 import { LuLibrary } from "react-icons/lu";
@@ -15,13 +16,12 @@ export function SidebarBottomHeader({ setActualFilter }) {
     if (TagsMenuRef.current.dataset.actualtag == givedTag) {
       TagsMenuRef.current.dataset.actualtag = "all";
 
-      NextTagsRef.current.style.cssText = NextTagsRef.current.style.cssText =
+      NextTagsRef.current.style.cssText =
         "transform: scale(1); right: 0; display: block;";
     } else {
       TagsMenuRef.current.dataset.actualtag = givedTag;
 
-      NextTagsRef.current.style.cssText = NextTagsRef.current.style.cssText =
-        "display: none;";
+      NextTagsRef.current.style.cssText = "display: none;";
     }
   }
 
@@ -53,27 +53,22 @@ export function SidebarBottomHeader({ setActualFilter }) {
         </div>
       </div>
       <menu ref={TagsMenuRef} data-actualtag="all" id="tags">
-        <li
-          data-ativo={setDataAtivo("artist")}
-          onClick={() => setTag("artist")}
-        >
-          Artistas
-        </li>
-        <li
-          data-ativo={setDataAtivo("playlist")}
-          onClick={() => setTag("playlist")}
-        >
-          Playlists
-        </li>
-        <li data-ativo={setDataAtivo("album")} onClick={() => setTag("album")}>
-          Albums
-        </li>
-        <li
-          data-ativo={setDataAtivo("podcast")}
-          onClick={() => setTag("podcast")}
-        >
-          Podcasts e programas
-        </li>
+        
+        {[
+          ["artist", "Artistas"],
+          ["playlist", "Playlists"],
+          ["album", "Albums"],
+          ["podcast", "Podcasts e programas"],
+        ].map((values, index) => (
+          <li
+            key={`tags-${index}`}
+            data-ativo={setDataAtivo(values[0])}
+            onClick={() => setTag(values[0])}
+          >
+            {values[1]}
+          </li>
+        ))}
+
         <div id="next_tags" ref={NextTagsRef}>
           <button
             onClick={() => {

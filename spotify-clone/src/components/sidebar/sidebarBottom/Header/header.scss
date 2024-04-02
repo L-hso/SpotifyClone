@@ -1,0 +1,101 @@
+@import "../../../spotify-colors";
+
+@mixin flexBox($just, $align){
+  display: flex;
+  justify-content: $just;
+  align-items: $align;
+}
+
+// "controlador" da sidebar_bottom
+header {
+  @include flexBox(center, start);
+  flex-direction: column;
+
+  gap: 1rem;
+  width: 100%;
+  padding: 1rem 0.85rem 0.5rem 0.85rem;
+
+  box-shadow: 8px 0 8px 8px rgba(0, 0, 0, 0.22);
+  overflow: hidden;
+
+  // cabeçalho / tags
+  #library_title {
+    @include flexBox(space-between, center);
+
+    width: 100%;
+    font-weight: 600;
+
+    > div {
+      @include flexBox(start, center);
+      gap: 1rem;
+    }
+  }
+
+  #tags {
+    @include flexBox(start, center);
+
+    gap: 0.75rem;
+    overflow: hidden;
+
+    font-size: 0.75rem;
+    font-weight: 500;
+
+    width: 100%;
+
+    li {
+      @include flexBox(center, center);
+
+      text-wrap: nowrap;
+
+      height: 1.5rem;
+      padding: 0.15rem 0.85rem;
+      border-radius: 9999px;
+      background-color: lighten($color: $spotify-cinza, $amount: 8);
+
+      transition: 0.23s all ease;
+      cursor: pointer;
+
+      &[data-ativo="true"] {
+        color: $spotify-preto;
+        background-color: $spotify-branco;
+        font-weight: 600;
+
+        display: flex;
+      }
+
+      &[data-ativo="all"] {
+        display: flex;
+
+        &:hover {
+          background-color: lighten($color: $spotify-cinza, $amount: 13);
+        }
+      }
+
+      &[data-ativo="false"] {
+        display: none;
+      }
+    }
+
+    #next_tags {
+      position: absolute;
+      right: 0;
+      background: linear-gradient(
+        to left,
+        $spotify-cinza,
+        90%,
+        rgba(0, 0, 0, 0)
+      );
+      height: 1.5rem;
+      width: 4rem;
+
+      button {
+        float: right;
+        margin-right: 0.85rem;
+        background-color: lighten($color: $spotify-cinza, $amount: 8);
+        height: 1.5rem;
+        width: 1.5rem;
+        border-radius: 50%;
+      }
+    }
+  }
+}

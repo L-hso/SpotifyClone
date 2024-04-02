@@ -1,4 +1,6 @@
-import { FakeData } from "../sidebarFakeData";
+import { IoPlay } from "react-icons/io5";
+import { FakeData } from "../../sidebarFakeData";
+import "./libraryDatabase.scss";
 
 export function LibraryDatabase({ actualFilter, actualLayout }) {
   function compareValuesToSort(a, b) {
@@ -43,11 +45,16 @@ export function LibraryDatabase({ actualFilter, actualLayout }) {
                 className="library_data"
                 onClick={() => (FakeData[key]["access"] = Date.now() * -1)}
               >
-                <img
-                  src={data.thumbnail}
-                  alt="thumbnail"
-                  data-category={data.category}
-                />
+                <div id="thumbnailAndPlayButtonWrapper">
+                  <img
+                    src={data.thumbnail} 
+                    alt="thumbnail"
+                    data-category={data.category}
+                  /> 
+                  <button className="playButton">
+                    <IoPlay size={25} fill={"#2e2e2e"}/>
+                  </button>
+                </div>
                 <hgroup>
                   <div>{data.title}</div>
                   <div>
@@ -57,7 +64,9 @@ export function LibraryDatabase({ actualFilter, actualLayout }) {
                         : ""}
                     </span>{" "}
                     <span>
-                      {actualLayout!="Compacto"? data.subtitle.split(" ").slice(1).join(" "): "• " + data.subtitle.split(" ").slice(0, 1)}
+                      {actualLayout != "Compacto"
+                        ? data.subtitle.split(" ").slice(1).join(" ")
+                        : "• " + data.subtitle.split(" ").slice(0, 1)}
                     </span>
                   </div>
                 </hgroup>
