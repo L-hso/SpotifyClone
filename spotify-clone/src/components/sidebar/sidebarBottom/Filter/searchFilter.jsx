@@ -1,7 +1,11 @@
 import "./searchFilter.scss";
 import { CiSearch } from "react-icons/ci";
+import {useRef} from 'react';
 
-export function SearchFilter({searchFilterRef, setActualFilter}){
+export function SearchFilter({ setActualFilter}){
+
+  const searchFilterRef = useRef(null);
+  
   return (<div id="search_filter">
   <button
     onClick={() => {

@@ -22,7 +22,7 @@
   --actualSidebarWidth: 350px;
   display: grid;
   grid-template-columns: var(--actualSidebarWidth) 12.5px 1fr;
-  grid-template-rows: 1fr 10%;
+  grid-template-rows: 1fr 8%;
   row-gap: 6px;
   
   height: 100vh;

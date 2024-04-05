@@ -24,7 +24,7 @@ export function SidebarBottomRoot() {
               .querySelector("#sidebarBottomHeader")
               .style.setProperty(
                 "--sidebarBottomHeaderShadow",
-                "8px 0 4px 8px rgba(0, 0, 0, 0.33)"
+                "12px 0 8px 12px rgba(0, 0, 0, 0.33)"
               );
           } else {
             document

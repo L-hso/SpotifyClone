@@ -92,13 +92,13 @@ header {
     #next_tags {
       --actualPositionLeft: none;
       --actualPositionRight: 0;
-      --scale: 1;
+      --actualScale: 1;
 
       position: absolute;
       left: var(--actualPositionLeft);
       right: var(--actualPositionRight);
 
-      transform: scaleX(var(--scale));
+      transform: scaleX(var(--actualScale));
 
       background: linear-gradient(
         to left,
@@ -120,5 +120,4 @@ header {
       }
     }
   }
-  
 }

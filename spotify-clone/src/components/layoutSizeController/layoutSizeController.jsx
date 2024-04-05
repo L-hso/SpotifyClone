@@ -5,7 +5,7 @@ export function LayoutSizeController() {
     <div
       id="LayoutSizeController"
       onDrag={(e) => {
-        if (e.pageX > 350 && e.pageX < 500) {
+        if (e.pageX > 350 && e.pageX < 650) {
           console.log(e.pageX);
           document
             .querySelector("#root")

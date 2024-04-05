@@ -83,9 +83,9 @@ export function SidebarBottomHeader({ setActualFilter }) {
                   left: menuref.clientWidth,
                   behavior: "smooth",
                 });
-                NextTagsRef.current.style.setProperty("--actualPositionLeft", 0);
+                NextTagsRef.current.style.setProperty("--actualPositionLeft", "-1px");
                 NextTagsRef.current.style.setProperty("--actualPositionRight", null);
-                NextTagsRef.current.style.setProperty("--scale", -1);
+                NextTagsRef.current.style.setProperty("--actualScale", -1);
               } else {
                 menuref.scrollBy({
                   top: 0,
@@ -94,7 +94,7 @@ export function SidebarBottomHeader({ setActualFilter }) {
                 });
                 NextTagsRef.current.style.setProperty("--actualPositionRight", 0);
                 NextTagsRef.current.style.setProperty("--actualPositionLeft", null);
-                NextTagsRef.current.style.setProperty("--scale", 1);
+                NextTagsRef.current.style.setProperty("--actualScale", 1);
               }
             }}
           >
