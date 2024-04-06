@@ -6,15 +6,25 @@ import {
   IoListSharp,
   IoMenu,
 } from "react-icons/io5";
-import { FilterContext } from "../sidebarBottomRoot";
+import { FilterContext } from "../../sidebarBottomRoot";
+
 
 export function SortFilterAndLayoutController() {
+  const sortFilters = {
+    access: "Recentes",
+    data: "Adicionado Recentemente",
+    title: "Ordem Alfabética",
+    owner: "Criador",
+  };
 
-  const sortFilters = {access:"Recentes", data:"Adicionado Recentemente", title:"Ordem Alfabética", owner:"Criador"};
+  const [sortMenuRef, layoutMenuRef, wrapperRef] = [
+    useRef(null),
+    useRef(null),
+    useRef(null),
+  ];
 
-  const [sortMenuRef, layoutMenuRef, wrapperRef] = [useRef(null), useRef(null), useRef(null)];
-
-  const {actualFilter, setActualFilter, setActualLayout } = useContext(FilterContext);
+  const { actualFilter, setActualFilter, actualLayout, setActualLayout } =
+    useContext(FilterContext);
 
   function setFilter(menuState, sortFilter) {
     setActualFilter((state) => {
@@ -36,27 +46,24 @@ export function SortFilterAndLayoutController() {
             wrapperRef.current.dataset.open == "false" ? "true" : "false";
         }}
       >
-        {sortFilters[actualFilter.sortFilter]}{" "}
-        <IoListSharp size={18} />
+        {sortFilters[actualFilter.sortFilter]} <IoListSharp size={18} />
       </button>
       <div id="menu_wrapper" ref={wrapperRef} data-open="false">
-        <menu data-sort={sortFilters[actualFilter.sortFilter]} ref={sortMenuRef}>
+        <menu
+          data-sort={sortFilters[actualFilter.sortFilter]}
+          ref={sortMenuRef}
+        >
           <span>Classificar por</span>
 
           {Object.entries(sortFilters).map((value, index) => (
             <li
               key={`menu-${index}`}
-              data-ativo={
-                sortMenuRef.current != null
-                  ? sortMenuRef.current.dataset.sort == value[1]
-                  : value[1] == "Recentes"
-              }
+              data-ativo={value[0] == actualFilter.sortFilter}
             >
               <button onClick={() => setFilter(value[1], value[0])}>
                 {value[1]}
               </button>{" "}
-              {value[1] == sortMenuRef?.current?.dataset.sort ||
-              (sortMenuRef.current == null && value[1] == "Recentes") ? (
+              {value[0] == actualFilter.sortFilter ? (
                 <IoCheckmark size={20} />
               ) : (
                 <></>
@@ -68,25 +75,20 @@ export function SortFilterAndLayoutController() {
         <menu data-layout="Lista" ref={layoutMenuRef}>
           <span>Ver como</span>
           {[
+
             ["Compacto", <IoMenu size={20} />],
             ["Lista", <IoListSharp size={17} />],
             ["Grade", <IoGridOutline size={17} />],
+
           ].map((value, index) => (
-            <li
-              key={`menu-2-${index}`}
-              data-ativo={
-                layoutMenuRef.current != null
-                  ? layoutMenuRef.current.dataset.layout == value[0]
-                  : value[0] == "Lista"
-              }
-            >
+
+            <li key={`menu-2-${index}`} data-ativo={actualLayout == value[0]}>
               <button onClick={() => setLayout(value[0])}>
                 <div>
                   {value[1]}
                   {value[0]}
                 </div>
-                {value[0] == layoutMenuRef.current?.dataset.layout ||
-                (layoutMenuRef.current == null && value[0] == "Lista") ? (
+                {value[0] == actualLayout ? (
                   <IoCheckmark size={20} />
                 ) : (
                   <></>
@@ -94,7 +96,7 @@ export function SortFilterAndLayoutController() {
               </button>
 
               {value[0] == "Grade" &&
-              layoutMenuRef.current?.dataset.layout == "Grade" ? (
+              actualLayout == "Grade" ? (
                 <input
                   type="range"
                   onInput={(e) => {

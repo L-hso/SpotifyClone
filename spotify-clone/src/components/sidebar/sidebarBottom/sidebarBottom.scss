@@ -15,6 +15,7 @@
   
 
   #library {
+    --dynamicDisplay: flex;
     @include flexBox(start, center);
     flex-direction: column;
     flex: 1;

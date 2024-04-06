@@ -16,13 +16,20 @@ export function SidebarBottomHeader() {
       return { ...state, tag: state.tag == givedTag ? "all" : givedTag };
     });
 
-    //Define a categoria atual e a posição do botão de avançar
+    //Define a categoria atual
+
     if (TagsMenuRef.current.dataset.actualtag == givedTag) {
+      if(TagsMenuRef.current.parentElement.clientWidth <= 350){
+        console.log("AAAAAAAAAAA")
+        NextTagsRef.current.style = "";
+      }
       TagsMenuRef.current.dataset.actualtag = "all";
     } else {
+      if(TagsMenuRef.current.parentElement.clientWidth <= 350){
+        console.log("AAAAAAAAAAA")
+        NextTagsRef.current.style = "display:none;";
+      }
       TagsMenuRef.current.dataset.actualtag = givedTag;
-
-      NextTagsRef.current.style.cssText = "display: none;";
     }
   }
 
@@ -54,73 +61,59 @@ export function SidebarBottomHeader() {
         </div>
       </div>
 
-      <div style={{display:"flex", width: "100%"}}>
-      <div id="tagsAndNextButtonWrapper">
-        <menu ref={TagsMenuRef} data-actualtag="all" id="tags">
-          {[
-            ["artist", "Artistas"],
-            ["playlist", "Playlists"],
-            ["album", "Albums"],
-            ["podcast", "Podcasts e programas"],
-          ].map((values, index) => (
-            <li
-              key={`tags-${index}`}
-              data-ativo={isSelected(values[0])}
-              onClick={() => setTag(values[0])}
-            >
-              {values[1]}
-            </li>
-          ))}
-        </menu>
-        <div id="next_tags" ref={NextTagsRef}>
-          <button
-            onClick={() => {
-              const menuref = TagsMenuRef.current;
-
-              if (menuref.scrollLeft == 0) {
-                menuref.scrollBy({
-                  top: 0,
-                  left: menuref.clientWidth,
-                  behavior: "smooth",
-                });
-
-                NextTagsRef.current.style.setProperty(
-                  "--actualPositionLeft",
-                  "-1px"
-                );
-
-                NextTagsRef.current.style.setProperty(
-                  "--actualPositionRight",
-                  null
-                );
-
-                NextTagsRef.current.style.setProperty("--actualScale", -1);
-              } else {
-                menuref.scrollBy({
-                  top: 0,
-                  left: -1 * menuref.clientWidth,
-                  behavior: "smooth",
-                });
-
-                NextTagsRef.current.style.setProperty(
-                  "--actualPositionRight",
-                  0
-                );
-
-                NextTagsRef.current.style.setProperty(
-                  "--actualPositionLeft",
-                  null
-                );
-
-                NextTagsRef.current.style.setProperty("--actualScale", 1);
-              }
-            }}
+      <div style={{ display: "flex", width: "100%" }}>
+        <div id="tagsAndNextButtonWrapper">
+          <menu ref={TagsMenuRef} data-actualtag="all" id="tags">
+            {[
+              ["artist", "Artistas"],
+              ["playlist", "Playlists"],
+              ["album", "Albums"],
+              ["podcast", "Podcasts e programas"],
+            ].map((values, index) => (
+              <li
+                key={`tags-${index}`}
+                data-ativo={isSelected(values[0])}
+                onClick={() => setTag(values[0])}
+              >
+                {values[1]}
+              </li>
+            ))}
+          </menu>
+          <div
+            id="next_tags"
+            ref={NextTagsRef}
+            
           >
-            <IoIosArrowForward {...{ size: 14, fill: "#fff" }} />
-          </button>
+            <button
+              onClick={() => {
+                const menuref = TagsMenuRef.current;
+
+                if (menuref.scrollLeft == 0) {
+                  menuref.scrollBy({
+                    top: 0,
+                    left: menuref.clientWidth,
+                    behavior: "smooth",
+                  });
+
+                  NextTagsRef.current.style = "--actualPositionRight: none; --actualPositionLeft: -1px; --actualScale: -1;"
+          
+                } else {
+                  menuref.scrollBy({
+                    top: 0,
+                    left: -1 * menuref.clientWidth,
+                    behavior: "smooth",
+                  });
+
+                  NextTagsRef.current.style = "--actualPositionRight: 0; --actualPositionLeft: none; --actualScale: 1;"
+
+                }
+              }}
+            >
+              <IoIosArrowForward {...{ size: 14, fill: "#fff" }} />
+            </button>
+          </div>
         </div>
-      </div>
-      <SidebarBottomFilter/>
+        <SidebarBottomFilter />
       </div>
     </header>
   );

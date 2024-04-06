@@ -1,18 +1,17 @@
 @import "../../../spotify-colors";
 
-@mixin flexBox($just, $align){
+@mixin flexBox($just, $align) {
   display: flex;
   justify-content: $just;
   align-items: $align;
 }
 
 // "controlador" da sidebar_bottom
-header {
+#sidebarBottomHeader {
   --sidebarBottomHeaderShadow: none;
-  
+  --dynamicDisplay: none;
   @include flexBox(center, start);
   flex-direction: column;
-
 
   gap: 1rem;
   width: 100%;
@@ -20,13 +19,11 @@ header {
 
   box-shadow: var(--sidebarBottomHeaderShadow);
 
-
-
   z-index: 12;
   // cabeçalho
   #library_title {
     @include flexBox(space-between, center);
-    flex:1;
+    flex: 1;
     width: 100%;
     font-weight: 600;
 
@@ -35,54 +32,53 @@ header {
       gap: 1rem;
     }
   }
-  
-  #tagsAndNextButtonWrapper{
-    @include flexBox(center, center);
-    max-width: calc(350px - 2 * 0.85rem);
+
+  #tagsAndNextButtonWrapper {
+    @include flexBox(start, center);
+    flex-grow: 1;
+    flex-shrink: 0.5;
+    width:100%;
     position: relative;
 
-    
     #tags {
       @include flexBox(start, center);
-      
+
       gap: 0.75rem;
       overflow: hidden;
-  
+
       font-size: 0.75rem;
       font-weight: 500;
-  
-      width: 350px; 
-      
+
 
       li {
         @include flexBox(center, center);
-  
+
         text-wrap: nowrap;
-  
+
         height: 1.5rem;
         padding: 0.15rem 0.85rem;
         border-radius: 9999px;
         background-color: lighten($color: $spotify-cinza, $amount: 8);
-  
+
         transition: 0.23s all ease;
         cursor: pointer;
-  
+
         &[data-ativo="true"] {
           color: $spotify-preto;
           background-color: $spotify-branco;
           font-weight: 600;
-  
+
           display: flex;
         }
-  
+
         &[data-ativo="all"] {
           display: flex;
-  
+
           &:hover {
             background-color: lighten($color: $spotify-cinza, $amount: 13);
           }
         }
-  
+
         &[data-ativo="false"] {
           display: none;
         }
@@ -93,7 +89,9 @@ header {
       --actualPositionLeft: none;
       --actualPositionRight: 0;
       --actualScale: 1;
+      --nextTagsDisplay: "block";
 
+      display: var(--nextTagsDisplay);
       position: absolute;
       left: var(--actualPositionLeft);
       right: var(--actualPositionRight);

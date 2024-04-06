@@ -7,6 +7,7 @@ import { SidebarBottomHeader } from "./Header/sidebarBottomHeader";
 export const FilterContext = createContext();
 
 export function SidebarBottomRoot() {
+  
   const [actualFilter, setActualFilter] = useState({
     search: "",
     tag: "all",
@@ -15,9 +16,11 @@ export function SidebarBottomRoot() {
 
   const [actualLayout, setActualLayout] = useState("Lista");
 
+  const [searchIsOpen, setSearchIsOpen] = useState(false);
+
   return (
     <FilterContext.Provider
-      value={{ actualFilter, setActualFilter, actualLayout, setActualLayout }}
+      value={{ actualFilter, setActualFilter, actualLayout, setActualLayout, searchIsOpen, setSearchIsOpen }}
     >
       <section id="sidebar_bottom">
         <SidebarBottomHeader />

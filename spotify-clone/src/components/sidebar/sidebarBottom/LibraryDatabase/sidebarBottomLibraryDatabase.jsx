@@ -13,19 +13,22 @@ export function LibraryDatabase() {
         .sort((a, b) => compareValuesToSort(a, b, actualFilter.sortFilter))
         .map(([id, data]) => {
           //verificação da pesquisa de titulo
+          let formatedSearch = actualFilter.search.toLowerCase()
+          .split(" ")
+          .join("");
 
           let titleHasSearch = data.title
             .toLowerCase()
             .split(" ")
             .join("")
-            .includes(actualFilter.search);
+            .includes(formatedSearch);
 
           let subtitleHasSearch = data.subtitle
             .toLowerCase()
             .split(" ")
             .slice(2)
             .join("")
-            .includes(actualFilter.search);
+            .includes(formatedSearch);
 
           if (
             (actualFilter.tag == data.category &&
