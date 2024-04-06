@@ -6,9 +6,9 @@
   align-items: $align;
 }
 
-#select_filter {
+.select_filter {
   position: relative;
-  z-index: 9999;
+  z-index: 10;
   > :first-child {
     @include flexBox(center, center);
     gap: 0.5rem;

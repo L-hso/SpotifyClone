@@ -1,12 +1,12 @@
+import './sidebarBottomFilter.scss'
 import { SortFilterAndLayoutController } from "./sortFilterAndLayoutController";
 import { SearchFilter } from "./searchFilter";
 
-export function SidebarBottomFilter({ setActualFilter, setActualLayout }) {
-  
+export function SidebarBottomFilter() {
   return (
-    <div id="search-select">
-      <SearchFilter {...{ setActualFilter }}/>
-      <SortFilterAndLayoutController {...{ setActualFilter, setActualLayout }}/>
+    <div className="search-select">
+      <SearchFilter />
+      <SortFilterAndLayoutController />
     </div>
   );
 }

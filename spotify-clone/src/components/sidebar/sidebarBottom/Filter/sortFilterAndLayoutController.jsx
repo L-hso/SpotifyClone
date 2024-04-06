@@ -1,16 +1,20 @@
 import "./sortFilterAndLayoutController.scss";
-import { useRef } from "react";
+import { useContext, useRef } from "react";
 import {
   IoCheckmark,
   IoGridOutline,
   IoListSharp,
   IoMenu,
 } from "react-icons/io5";
+import { FilterContext } from "../sidebarBottomRoot";
 
-export function SortFilterAndLayoutController({ setActualFilter, setActualLayout }) {
-  const sortMenuRef = useRef(null);
-  const layoutMenuRef = useRef(null);
-  const wrapperRef = useRef(null);
+export function SortFilterAndLayoutController() {
+
+  const sortFilters = {access:"Recentes", data:"Adicionado Recentemente", title:"Ordem Alfabética", owner:"Criador"};
+
+  const [sortMenuRef, layoutMenuRef, wrapperRef] = [useRef(null), useRef(null), useRef(null)];
+
+  const {actualFilter, setActualFilter, setActualLayout } = useContext(FilterContext);
 
   function setFilter(menuState, sortFilter) {
     setActualFilter((state) => {
@@ -25,41 +29,34 @@ export function SortFilterAndLayoutController({ setActualFilter, setActualLayout
   }
 
   return (
-    <div id="select_filter">
+    <div className="select_filter">
       <button
         onClick={() => {
           wrapperRef.current.dataset.open =
             wrapperRef.current.dataset.open == "false" ? "true" : "false";
         }}
       >
-        {sortMenuRef.current?.dataset.sort ?? "Recentes"}{" "}
+        {sortFilters[actualFilter.sortFilter]}{" "}
         <IoListSharp size={18} />
       </button>
       <div id="menu_wrapper" ref={wrapperRef} data-open="false">
-        
-        
-        <menu data-sort="Recentes" ref={sortMenuRef}>
+        <menu data-sort={sortFilters[actualFilter.sortFilter]} ref={sortMenuRef}>
           <span>Classificar por</span>
 
-          {[
-            ["Recentes", "access"],
-            ["Adicionado Recentemente", "data"],
-            ["Ordem Alfabética", "title"],
-            ["Criador", "owner"],
-          ].map((value, index) => (
+          {Object.entries(sortFilters).map((value, index) => (
             <li
               key={`menu-${index}`}
               data-ativo={
                 sortMenuRef.current != null
-                  ? sortMenuRef?.current?.dataset.sort == value[0]
-                  : value[0] == "Recentes"
+                  ? sortMenuRef.current.dataset.sort == value[1]
+                  : value[1] == "Recentes"
               }
             >
-              <button onClick={() => setFilter(value[0], value[1])}>
-                {value[0]}
+              <button onClick={() => setFilter(value[1], value[0])}>
+                {value[1]}
               </button>{" "}
-              {value[0] == sortMenuRef?.current?.dataset.sort ||
-              (sortMenuRef.current == null && value[0] == "Recentes") ? (
+              {value[1] == sortMenuRef?.current?.dataset.sort ||
+              (sortMenuRef.current == null && value[1] == "Recentes") ? (
                 <IoCheckmark size={20} />
               ) : (
                 <></>

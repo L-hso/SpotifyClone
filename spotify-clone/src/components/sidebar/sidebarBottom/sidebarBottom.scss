@@ -23,12 +23,8 @@
     scrollbar-color: lighten($color: $spotify-cinza, $amount: 25) $spotify-cinza;
     overflow: auto;
 
-    #search-select {
-      @include flexBox(space-between, center);
-      width: 100%;
-      padding: 0.75rem 0.85rem;
-    }
-
     
+
+
   }
 }
