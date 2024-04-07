@@ -8,8 +8,8 @@ export const FakeData = {
     "category": "album",
     "fixado": false,
     "tocando": false,
-    "data": Date.now(),
-    "access":Date.now(),
+    "data": new Date(),
+    "access": 0,
   },
   "d-2": {
     "thumbnail":
@@ -20,8 +20,8 @@ export const FakeData = {
     "category": "album",
     "fixado": false,
     "tocando": false,
-    "data": Date.now()-1,
-    "access":Date.now(),
+    "data": new Date(),
+    "access": 0,
   },
   "d-3": {
     "thumbnail":
@@ -32,8 +32,8 @@ export const FakeData = {
     "owner": "tim_maia",
     "fixado": false,
     "tocando": false,
-    "data": Date.now(),
-    "access":Date.now(),
+    "data": new Date(),
+    "access": 0,
   },
   "d-4": {
     "thumbnail":
@@ -44,8 +44,8 @@ export const FakeData = {
     "category":"podcast",
     "fixado": false,
     "tocando": false,
-    "data": Date.now()-2,
-    "access":Date.now(),
+    "data": new Date(),
+    "access": 0,
   },
   "d-5": {
     "thumbnail":
@@ -56,8 +56,8 @@ export const FakeData = {
     "category": "album",
     "fixado": false,
     "tocando": false,
-    "data": Date.now(),
-    "access":Date.now(),
+    "data": new Date(),
+    "access": 0,
   },
   "d-6": {
     "thumbnail":
@@ -68,8 +68,8 @@ export const FakeData = {
     "category": "album",
     "fixado": false,
     "tocando": false,
-    "data": Date.now()-1,
-    "access":Date.now(),
+    "data": new Date(),
+    "access": 0,
   },
   "d-7": {
     "thumbnail":
@@ -80,8 +80,8 @@ export const FakeData = {
     "owner": "tim_maia",
     "fixado": false,
     "tocando": false,
-    "data": Date.now(),
-    "access":Date.now(),
+    "data": new Date(),
+    "access": 0,
   },
   "d-8": {
     "thumbnail":
@@ -92,8 +92,8 @@ export const FakeData = {
     "category":"podcast",
     "fixado": false,
     "tocando": false,
-    "data": Date.now()-2,
-    "access":Date.now(),
+    "data": new Date(),
+    "access": 0,
   },
   "d-9": {
     "thumbnail":
@@ -104,8 +104,8 @@ export const FakeData = {
     "category": "album",
     "fixado": false,
     "tocando": false,
-    "data": Date.now(),
-    "access":Date.now(),
+    "data": new Date(),
+    "access": 0,
   },
   "d-10": {
     "thumbnail":
@@ -116,8 +116,8 @@ export const FakeData = {
     "category": "album",
     "fixado": false,
     "tocando": false,
-    "data": Date.now()-1,
-    "access":Date.now(),
+    "data": new Date(),
+    "access": 0,
   },
   "d-11": {
     "thumbnail":
@@ -128,8 +128,8 @@ export const FakeData = {
     "owner": "tim_maia",
     "fixado": false,
     "tocando": false,
-    "data": Date.now(),
-    "access":Date.now(),
+    "data": new Date(),
+    "access": 0,
   },
   "d-12": {
     "thumbnail":
@@ -140,8 +140,8 @@ export const FakeData = {
     "category":"podcast",
     "fixado": false,
     "tocando": false,
-    "data": Date.now()-2,
-    "access":Date.now(),
+    "data": new Date(),
+    "access": 0,
   },
   "d-13": {
     "thumbnail":
@@ -152,8 +152,8 @@ export const FakeData = {
     "category": "album",
     "fixado": false,
     "tocando": false,
-    "data": Date.now(),
-    "access":Date.now(),
+    "data": new Date(),
+    "access": 0,
   },
   "d-14": {
     "thumbnail":
@@ -164,8 +164,8 @@ export const FakeData = {
     "category": "album",
     "fixado": false,
     "tocando": false,
-    "data": Date.now()-1,
-    "access":Date.now(),
+    "data": new Date(),
+    "access": 0,
   },
   "d-15": {
     "thumbnail":
@@ -176,8 +176,8 @@ export const FakeData = {
     "owner": "tim_maia",
     "fixado": false,
     "tocando": false,
-    "data": Date.now(),
-    "access":Date.now(),
+    "data": new Date(),
+    "access": 0,
   },
   "d-16": {
     "thumbnail":
@@ -188,7 +188,7 @@ export const FakeData = {
     "category":"podcast",
     "fixado": false,
     "tocando": false,
-    "data": Date.now()-2,
-    "access":Date.now(),
+    "data": new Date(),
+    "access": 0,
   }
 }

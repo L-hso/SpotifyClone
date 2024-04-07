@@ -22,115 +22,131 @@
   }
 
   .library_data {
-    @include flexBox(start, center);
-    gap: 1rem;
-    width: 100%;
-    padding: 0.5rem;
-    position: relative;
-
-    cursor: pointer;
-
+    @include flexBox(space-between, center);
     &:hover {
       background-color: lighten($color: $spotify-cinza, $amount: 8);
     }
 
-    &[data-layout="Lista"] {
-      #thumbnailAndPlayButtonWrapper {
-        display: block;
+    .library_data_extra_info {
+      --extraInfoDisplay: none;
+      display: var(--extraInfoDisplay);
+      justify-content: space-between;
+      align-items: center;
+      width: 80%;
+      gap: 1rem;
+      padding: 0 2rem;
+      font-size: 0.75rem;
+      span {
+        text-wrap: nowrap;
       }
     }
 
-    &[data-layout="Compacto"] {
-      img {
-        display: none;
-      }
-
-      hgroup {
-        > * {
-          display: inline-block;
-          &:first-child {
-            font-size: 0.85rem;
-          }
-
-          &:last-child {
-            margin-left: 0.5rem;
-            font-size: 0.85rem;
-          }
-        }
-      }
-    }
-
-    &[data-layout="Grade"] {
-      align-items: start;
-      justify-content: center;
-
-      flex-direction: column;
-
-      border-radius: 0.5rem;
-      &:hover #thumbnailAndPlayButtonWrapper .playButton {
-        display: flex;
-      }
-      #thumbnailAndPlayButtonWrapper {
-        min-width: 100%;
-        display: block;
-      }
-
-      img {
-        min-width: 100%;
-      }
-
-      hgroup {
-        display: var(--textDisplayOnGrid);
-      }
-    }
-
-    //icone
-    #thumbnailAndPlayButtonWrapper {
-      width: calc(40px / 1rem * 1rem);
+    .library_data_info {
+      @include flexBox(start, center);
+      gap: 1rem;
+      width: 100%;
+      padding: 0.5rem;
       position: relative;
-      display: none;
 
-      .playButton {
-        @include flexBox(center, center);
-        display: none;
+      cursor: pointer;
 
-        width: min(80%, 3rem);
-        height: min(80%, 3rem);
-        border-radius: 9999px;
-
-        background: darken($color: $spotify-verde, $amount: 2);
-
-        box-shadow: 0 3px 5px 4px rgba(0, 0, 0, 0.33);
-
-        position: absolute;
-        bottom: 0.5rem;
-        right: 0.5rem;
-
-        svg {
-          margin-left: 0.2rem;
+      &[data-layout="Lista"] {
+        .thumbnailAndPlayButtonWrapper {
+          display: block;
         }
       }
-    }
 
-    img {
-      max-width: calc(40px / 1rem * 1rem);
-      border-radius: 5px;
+      &[data-layout="Compacto"] {
+        img {
+          display: none;
+        }
 
-      &[data-category="artist"] {
-        border-radius: 50%;
+        hgroup {
+          > * {
+            display: inline-block;
+            &:first-child {
+              font-size: 0.85rem;
+            }
+
+            &:last-child {
+              margin-left: 0.5rem;
+              font-size: 0.85rem;
+            }
+          }
+        }
       }
-    }
 
-    hgroup {
-      :first-child {
-        font-size: 0.9rem;
-        font-weight: 500;
+      &[data-layout="Grade"] {
+        align-items: start;
+        justify-content: center;
+
+        flex-direction: column;
+
+        border-radius: 0.5rem;
+        &:hover .thumbnailAndPlayButtonWrapper .playButton {
+          display: flex;
+        }
+        .thumbnailAndPlayButtonWrapper {
+          min-width: 100%;
+          display: block;
+        }
+
+        img {
+          min-width: 100%;
+        }
+
+        hgroup {
+          display: var(--textDisplayOnGrid);
+        }
       }
 
-      :last-child * {
-        color: lighten($color: $spotify-cinza, $amount: 50);
-        font-size: 0.75rem;
-        margin-top: 0.1rem;
+      .thumbnailAndPlayButtonWrapper {
+        width: calc(40px / 1rem * 1rem);
+        position: relative;
+        display: none;
+
+        .playButton {
+          @include flexBox(center, center);
+          display: none;
+
+          width: min(80%, 3rem);
+          height: min(80%, 3rem);
+          border-radius: 9999px;
+
+          background: darken($color: $spotify-verde, $amount: 2);
+
+          box-shadow: 0 3px 5px 4px rgba(0, 0, 0, 0.33);
+
+          position: absolute;
+          bottom: 0.5rem;
+          right: 0.5rem;
+
+          svg {
+            margin-left: 0.2rem;
+          }
+        }
+      }
+
+      .thumbnail {
+        max-width: calc(40px / 1rem * 1rem);
+        border-radius: 5px;
+
+        &[data-category="artist"] {
+          border-radius: 50%;
+        }
+      }
+
+      .titleAndSubtitle {
+        :first-child {
+          font-size: 0.9rem;
+          font-weight: 500;
+        }
+
+        :last-child * {
+          color: lighten($color: $spotify-cinza, $amount: 50);
+          font-size: 0.75rem;
+          margin-top: 0.1rem;
+        }
       }
     }
   }

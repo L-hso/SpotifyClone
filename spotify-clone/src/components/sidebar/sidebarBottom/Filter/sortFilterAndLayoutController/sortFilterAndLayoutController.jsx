@@ -46,7 +46,7 @@ export function SortFilterAndLayoutController() {
             wrapperRef.current.dataset.open == "false" ? "true" : "false";
         }}
       >
-        {sortFilters[actualFilter.sortFilter]} <IoListSharp size={18} />
+        <span>{sortFilters[actualFilter.sortFilter]}</span> <IoListSharp size={18} />
       </button>
       <div id="menu_wrapper" ref={wrapperRef} data-open="false">
         <menu

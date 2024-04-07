@@ -19,14 +19,12 @@ export function SidebarBottomHeader() {
     //Define a categoria atual
 
     if (TagsMenuRef.current.dataset.actualtag == givedTag) {
-      if(TagsMenuRef.current.parentElement.clientWidth <= 350){
-        console.log("AAAAAAAAAAA")
+      if(TagsMenuRef.current.parentElement.clientWidth < 390){
         NextTagsRef.current.style = "";
       }
       TagsMenuRef.current.dataset.actualtag = "all";
     } else {
-      if(TagsMenuRef.current.parentElement.clientWidth <= 350){
-        console.log("AAAAAAAAAAA")
+      if(TagsMenuRef.current.parentElement.clientWidth < 390){
         NextTagsRef.current.style = "display:none;";
       }
       TagsMenuRef.current.dataset.actualtag = givedTag;
@@ -61,7 +59,7 @@ export function SidebarBottomHeader() {
         </div>
       </div>
 
-      <div style={{ display: "flex", width: "100%" }}>
+      <div style={{ display: "flex", width: "100%", justifyContent: "space-between" }}>
         <div id="tagsAndNextButtonWrapper">
           <menu ref={TagsMenuRef} data-actualtag="all" id="tags">
             {[

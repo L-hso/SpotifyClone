@@ -35,9 +35,10 @@
 
   #tagsAndNextButtonWrapper {
     @include flexBox(start, center);
-    flex-grow: 1;
+
     flex-shrink: 0.5;
-    width:100%;
+    width: calc(390px / 1rem * 1rem);
+    max-width: 100%;
     position: relative;
 
     #tags {
@@ -49,7 +50,7 @@
       font-size: 0.75rem;
       font-weight: 500;
 
-
+      width:calc(390px / 1rem * 1rem);
       li {
         @include flexBox(center, center);
 
