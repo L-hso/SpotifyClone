@@ -5,26 +5,43 @@ import { SidebarBottomFilter } from "../Filter/sidebarBottomFilter";
 import { IoIosArrowForward, IoMdArrowForward } from "react-icons/io";
 import { FiPlus } from "react-icons/fi";
 import { LuLibrary } from "react-icons/lu";
+import { layoutSizeContext } from "../../../../App";
+import { LibraryTableHead } from "./libraryTableHead";
 
 export function SidebarBottomHeader() {
   const [TagsMenuRef, NextTagsRef] = [useRef(null), useRef(null)];
 
-  const { setActualFilter } = useContext(FilterContext);
+  const { setActualFilter, actualFilter } = useContext(FilterContext);
 
+  const { layoutSize } = useContext(layoutSizeContext);
+
+  let nextTagsStyle;
+
+  if (layoutSize >= 390) {
+    nextTagsStyle = { "--nextTagsDisplay": "none" };
+    TagsMenuRef.current.scrollLeft = 0;
+  } else {
+    nextTagsStyle = {
+      "--nextTagsDisplay": "block",
+      "--actualPositionLeft": "none",
+      "--actualPositionRight": 0,
+      "--actualScale": 1,
+    };
+  }
+
+  //Define a categoria atual
   function setTag(givedTag) {
     setActualFilter((state) => {
       return { ...state, tag: state.tag == givedTag ? "all" : givedTag };
     });
 
-    //Define a categoria atual
-
     if (TagsMenuRef.current.dataset.actualtag == givedTag) {
-      if(TagsMenuRef.current.parentElement.clientWidth < 390){
+      if (TagsMenuRef.current.parentElement.clientWidth < 390) {
         NextTagsRef.current.style = "";
       }
       TagsMenuRef.current.dataset.actualtag = "all";
     } else {
-      if(TagsMenuRef.current.parentElement.clientWidth < 390){
+      if (TagsMenuRef.current.parentElement.clientWidth < 390) {
         NextTagsRef.current.style = "display:none;";
       }
       TagsMenuRef.current.dataset.actualtag = givedTag;
@@ -40,7 +57,10 @@ export function SidebarBottomHeader() {
   }
 
   return (
-    <header id="sidebarBottomHeader">
+    <header
+      id="sidebarBottomHeader"
+      style={{ "--dynamicDisplay": layoutSize >= 660 ? "flex" : "none" , borderBottom: layoutSize>=660?"1.5px solid #666":"none"}}
+    >
       <div id="library_title">
         <div>
           <button>
@@ -59,7 +79,13 @@ export function SidebarBottomHeader() {
         </div>
       </div>
 
-      <div style={{ display: "flex", width: "100%", justifyContent: "space-between" }}>
+      <div
+        style={{
+          display: "flex",
+          width: "100%",
+          justifyContent: "space-between",
+        }}
+      >
         <div id="tagsAndNextButtonWrapper">
           <menu ref={TagsMenuRef} data-actualtag="all" id="tags">
             {[
@@ -77,11 +103,7 @@ export function SidebarBottomHeader() {
               </li>
             ))}
           </menu>
-          <div
-            id="next_tags"
-            ref={NextTagsRef}
-            
-          >
+          <div id="next_tags" ref={NextTagsRef} style={nextTagsStyle}>
             <button
               onClick={() => {
                 const menuref = TagsMenuRef.current;
@@ -93,8 +115,8 @@ export function SidebarBottomHeader() {
                     behavior: "smooth",
                   });
 
-                  NextTagsRef.current.style = "--actualPositionRight: none; --actualPositionLeft: -1px; --actualScale: -1;"
-          
+                  NextTagsRef.current.style =
+                    "--actualPositionRight: none; --actualPositionLeft: -1px; --actualScale: -1;";
                 } else {
                   menuref.scrollBy({
                     top: 0,
@@ -102,8 +124,8 @@ export function SidebarBottomHeader() {
                     behavior: "smooth",
                   });
 
-                  NextTagsRef.current.style = "--actualPositionRight: 0; --actualPositionLeft: none; --actualScale: 1;"
-
+                  NextTagsRef.current.style =
+                    "--actualPositionRight: 0; --actualPositionLeft: none; --actualScale: 1;";
                 }
               }}
             >
@@ -113,6 +135,7 @@ export function SidebarBottomHeader() {
         </div>
         <SidebarBottomFilter />
       </div>
+      <LibraryTableHead/>
     </header>
   );
 }

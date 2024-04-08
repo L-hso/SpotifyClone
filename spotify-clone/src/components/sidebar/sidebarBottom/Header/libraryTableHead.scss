@@ -1,0 +1,21 @@
+@import "../../../spotify-colors";
+
+#libraryTableHead {
+  --libraryTableHeadDisplay: none;
+  display: var(--libraryTableHeadDisplay);
+  justify-content: space-between;
+  width: 100%;
+
+  font-size: 0.75rem;
+  font-weight: 700;
+
+  span {
+    color: darken($color: $spotify-branco, $amount: 20);
+  }
+  hgroup {
+    display: flex;
+    justify-content: space-between;
+    width: 20rem;
+    padding: 0 2rem 0 0;
+  }
+}

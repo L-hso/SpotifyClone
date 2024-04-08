@@ -10,6 +10,7 @@
 #sidebarBottomHeader {
   --sidebarBottomHeaderShadow: none;
   --dynamicDisplay: none;
+  
   @include flexBox(center, start);
   flex-direction: column;
 

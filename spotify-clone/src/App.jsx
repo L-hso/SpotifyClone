@@ -2,16 +2,22 @@ import { Main } from "./components/main/Widget";
 import { Footer } from "./components/footer/Widget";
 import { Sidebar } from "./components/sidebar/Widget";
 import { LayoutSizeController } from "./components/layoutSizeController/layoutSizeController";
+import { createContext, useState } from "react";
 
-
+export const layoutSizeContext = createContext();
 function App() {
+
+  const [layoutSize, setLayoutSize] = useState(350);
+
   return (
-    <>
+    <layoutSizeContext.Provider value={{layoutSize, setLayoutSize}}>
       <Sidebar.Root>
         {/* <Sidebar.Top /> */}
         <Sidebar.Bottom />
       </Sidebar.Root>
-      <LayoutSizeController/>
+
+      <LayoutSizeController />
+
       <Main.Root></Main.Root>
 
       <Footer.Root>
@@ -19,7 +25,7 @@ function App() {
           <Footer.Progress />
         </Footer.Control>
       </Footer.Root>
-    </>
+    </layoutSizeContext.Provider>
   );
 }
 

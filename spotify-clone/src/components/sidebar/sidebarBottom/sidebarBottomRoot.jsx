@@ -1,13 +1,13 @@
 import "./sidebarBottom.scss";
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { LibraryDatabase } from "./LibraryDatabase/sidebarBottomLibraryDatabase";
 import { SidebarBottomFilter } from "./Filter/sidebarBottomFilter";
 import { SidebarBottomHeader } from "./Header/sidebarBottomHeader";
+import { layoutSizeContext } from "../../../App";
 
 export const FilterContext = createContext();
 
 export function SidebarBottomRoot() {
-  
   const [actualFilter, setActualFilter] = useState({
     search: "",
     tag: "all",
@@ -18,15 +18,25 @@ export function SidebarBottomRoot() {
 
   const [searchIsOpen, setSearchIsOpen] = useState(false);
 
+  const { layoutSize } = useContext(layoutSizeContext);
+
   return (
     <FilterContext.Provider
-      value={{ actualFilter, setActualFilter, actualLayout, setActualLayout, searchIsOpen, setSearchIsOpen }}
+      value={{
+        actualFilter,
+        setActualFilter,
+        actualLayout,
+        setActualLayout,
+        searchIsOpen,
+        setSearchIsOpen,
+      }}
     >
       <section id="sidebar_bottom">
         <SidebarBottomHeader />
         <div
           id="library"
           onScroll={ShadowOnScroll}
+          style={{ "--dynamicDisplay": layoutSize >= 660 ? "none" : "flex" }}
         >
           <SidebarBottomFilter />
           <LibraryDatabase />
@@ -36,8 +46,7 @@ export function SidebarBottomRoot() {
   );
 }
 
-
-function ShadowOnScroll(e){
+function ShadowOnScroll(e) {
   if (e.currentTarget.scrollTop != 0) {
     document
       .querySelector("#sidebarBottomHeader")

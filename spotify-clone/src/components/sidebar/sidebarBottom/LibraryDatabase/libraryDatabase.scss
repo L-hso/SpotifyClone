@@ -9,6 +9,7 @@
 #library_database {
   width: 100%;
   height: 100%;
+
   flex: 1;
   --libraryDataWidth: 35%;
 
@@ -23,6 +24,10 @@
 
   .library_data {
     @include flexBox(space-between, center);
+
+    border-radius: 0.25rem;
+    cursor: pointer;
+
     &:hover {
       background-color: lighten($color: $spotify-cinza, $amount: 8);
     }
@@ -32,20 +37,22 @@
       display: var(--extraInfoDisplay);
       justify-content: space-between;
       align-items: center;
-      width: 80%;
-      gap: 1rem;
-      padding: 0 2rem;
+
+      width: 20rem;
+      padding: 0 2rem 0 0;
+
       font-size: 0.75rem;
+
       span {
         text-wrap: nowrap;
+        color: darken($color: $spotify-branco, $amount: 20);
       }
     }
 
     .library_data_info {
       @include flexBox(start, center);
       gap: 1rem;
-      width: 100%;
-      padding: 0.5rem;
+      padding: 0.5rem 0 0.5rem 0.5rem;
       position: relative;
 
       cursor: pointer;
@@ -146,6 +153,9 @@
           color: lighten($color: $spotify-cinza, $amount: 50);
           font-size: 0.75rem;
           margin-top: 0.1rem;
+          &:last-child {
+            margin-left: 0.1rem;
+          }
         }
       }
     }
