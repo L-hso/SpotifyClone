@@ -2,7 +2,7 @@ import "./header.scss";
 import { FilterContext } from "../sidebarBottomRoot";
 import { useContext, useRef } from "react";
 import { SidebarBottomFilter } from "../Filter/sidebarBottomFilter";
-import { IoIosArrowForward, IoMdArrowForward } from "react-icons/io";
+import { IoIosArrowForward, IoMdArrowBack, IoMdArrowForward } from "react-icons/io";
 import { FiPlus } from "react-icons/fi";
 import { LuLibrary } from "react-icons/lu";
 import { layoutSizeContext } from "../../../../App";
@@ -11,9 +11,9 @@ import { LibraryTableHead } from "./libraryTableHead";
 export function SidebarBottomHeader() {
   const [TagsMenuRef, NextTagsRef] = [useRef(null), useRef(null)];
 
-  const { setActualFilter, actualFilter } = useContext(FilterContext);
+  const { setActualFilter, actualLayout } = useContext(FilterContext);
 
-  const { layoutSize } = useContext(layoutSizeContext);
+  const { layoutSize, setLayoutSize } = useContext(layoutSizeContext);
 
   let nextTagsStyle;
 
@@ -59,7 +59,13 @@ export function SidebarBottomHeader() {
   return (
     <header
       id="sidebarBottomHeader"
-      style={{ "--dynamicDisplay": layoutSize >= 660 ? "flex" : "none" , borderBottom: layoutSize>=660?"1.5px solid #666":"none"}}
+      style={{
+        "--dynamicDisplay": layoutSize >= 660 ? "flex" : "none",
+        borderBottom:
+          layoutSize >= 660 && actualLayout != "Grade"
+            ? "1.5px solid #666"
+            : "none",
+      }}
     >
       <div id="library_title">
         <div>
@@ -73,8 +79,24 @@ export function SidebarBottomHeader() {
           <button>
             <FiPlus size={20} fill="#ffffff" />
           </button>
-          <button>
-            <IoMdArrowForward size={20} fill="#ffffff" />
+          <button
+            onClick={() => {
+              if (layoutSize < 750) {
+                document
+                  .querySelector("#root")
+                  .style.setProperty("--actualSidebarWidth", "750px");
+
+                setLayoutSize(750);
+              } else {
+                document
+                  .querySelector("#root")
+                  .style.setProperty("--actualSidebarWidth", "350px");
+
+                setLayoutSize(350);
+              }
+            }}
+          >
+            {layoutSize < 750 ? <IoMdArrowForward size={20} fill="#ffffff" /> : <IoMdArrowBack size={20} fill="#ffffff"/>}
           </button>
         </div>
       </div>
@@ -135,7 +157,7 @@ export function SidebarBottomHeader() {
         </div>
         <SidebarBottomFilter />
       </div>
-      <LibraryTableHead/>
+      <LibraryTableHead />
     </header>
   );
 }

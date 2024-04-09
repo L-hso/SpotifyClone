@@ -9,9 +9,9 @@ export function LayoutSizeController() {
   return (
     <div
       id="LayoutSizeController"
-      onDragCapture={(e) => {
+      onDrag={(e) => {
         //Define o tamanho da sidebar
-        if (e.pageX > 350 && e.pageX < 750) {
+        if (e.pageX >= 350 && e.pageX <= 750) {
           document
             .querySelector("#root")
             .style.setProperty("--actualSidebarWidth", e.pageX + "px");
@@ -19,6 +19,6 @@ export function LayoutSizeController() {
         setLayoutSize(e.pageX);
         }
       }}
-    ></div>
+    />
   );
 }

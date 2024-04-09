@@ -23,8 +23,8 @@
   }
 
   .library_data {
-    @include flexBox(space-between, center);
-
+    @include flexBox(start, center);
+    
     border-radius: 0.25rem;
     cursor: pointer;
 
@@ -38,8 +38,7 @@
       justify-content: space-between;
       align-items: center;
 
-      width: 20rem;
-      padding: 0 2rem 0 0;
+      width: 15rem;
 
       font-size: 0.75rem;
 
@@ -52,6 +51,7 @@
     .library_data_info {
       @include flexBox(start, center);
       gap: 1rem;
+      width: 25.5rem;
       padding: 0.5rem 0 0.5rem 0.5rem;
       position: relative;
 

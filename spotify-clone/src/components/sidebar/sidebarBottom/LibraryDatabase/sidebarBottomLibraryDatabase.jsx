@@ -83,7 +83,7 @@ export function LibraryDatabase() {
                 <div
                   className="library_data_extra_info"
                   style={{
-                    "--extraInfoDisplay": layoutSize >= 660 ? "flex" : "none",
+                    "--extraInfoDisplay": layoutSize >= 660 && actualLayout != "Grade" ? "flex" : "none",
                   }}
                 >
                   <span className="data_create">
