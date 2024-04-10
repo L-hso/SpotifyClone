@@ -1,7 +1,9 @@
 @import "../spotify-colors";
 
 #main_content {
-  background-color: $spotify-cinza;
+  background: $spotify-cinza;
   border-radius: 8px;
+  position: relative;
   grid-column: 3/4;
+  overflow-x:hidden ;
 }

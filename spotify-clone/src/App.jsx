@@ -9,16 +9,19 @@ function App() {
 
   const [layoutSize, setLayoutSize] = useState(350);
 
+
   return (
     <layoutSizeContext.Provider value={{layoutSize, setLayoutSize}}>
       <Sidebar.Root>
-        {/* <Sidebar.Top /> */}
+        <Sidebar.Top />
         <Sidebar.Bottom />
       </Sidebar.Root>
 
       <LayoutSizeController />
 
-      <Main.Root></Main.Root>
+      <Main.Root>
+        <Main.Header/>
+      </Main.Root>
 
       <Footer.Root>
         <Footer.Control>
