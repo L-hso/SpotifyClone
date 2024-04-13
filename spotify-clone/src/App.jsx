@@ -21,6 +21,7 @@ function App() {
 
       <Main.Root>
         <Main.Header/>
+        <Main.Recent/>
       </Main.Root>
 
       <Footer.Root>

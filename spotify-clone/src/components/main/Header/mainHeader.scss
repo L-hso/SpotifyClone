@@ -1,65 +1,74 @@
-@import '../../spotify-colors';
+@import "../../spotify-colors";
 
-@mixin flexBox($just, $align){
-    display: flex;
-    justify-content: $just;
-    align-items: $align;
+@mixin flexBox($just, $align) {
+  display: flex;
+  justify-content: $just;
+  align-items: $align;
 }
 
-#main_content_header{
-    @include flexBox(space-between, center);
-    width: 100%;
-    padding: 0.5rem 1rem;
-    position: absolute;
-    
-    z-index: 1;
+#main_content_header {
+  @include flexBox(space-between, center);
+  width: 100%;
+  padding: 1rem 0;
 
-    #page_control{
-        @include flexBox(none, center);
-        gap: 1rem;
-        button{
-            @include flexBox(center, center);
-            background-color: $spotify-preto;
-            border-radius: 9999px;
-            height: 2rem;
-            width: 2rem;
-        }
+
+ 
+  button {
+    &:hover {
+      transform: scale(1.025);
     }
-    #header_menu_options{
-        @include flexBox(none, center);
-        gap: 1.5rem;
+  }
 
-        #premium, #install_app{
-            height: 2rem;
-            padding: 0 1rem;
-            border-radius: 9999px;
-            font-weight: 700;
-        }
+  #page_control {
+    @include flexBox(start, center);
+    gap: 1rem;
 
-        #premium{
-            background-color: $spotify-branco;
-            color: $spotify-preto;
-        }
-
-        #install_app{
-            @include flexBox(center, center);
-            gap: .5rem;
-            background-color: $spotify-preto;
-            color: $spotify-branco;
-        }
-
-        #notifications{
-            background-color: $spotify-preto;
-            border-radius: 9999px;
-            height: 2rem;
-            width: 2rem;
-        }
-
-        #profile{
-            background-color: $spotify-preto;
-            border-radius: 9999px;
-            height: 2rem;
-            width: 2rem;
-        }
+    button {
+      @include flexBox(center, center);
+      background-color: $spotify-preto;
+      border-radius: 9999px;
+      height: 2rem;
+      width: 2rem;
     }
+
+  }
+  #header_menu_options {
+    @include flexBox(none, center);
+    gap: 1rem;
+
+    #premium,
+    #install_app {
+      height: 2rem;
+      padding: 0 1rem;
+      border-radius: 9999px;
+      font-weight: 700;
+      text-wrap: nowrap;
+    }
+
+    #premium {
+      background-color: $spotify-branco;
+      color: $spotify-preto;
+    }
+
+    #install_app {
+      @include flexBox(center, center);
+      gap: 0.5rem;
+      background-color: $spotify-preto;
+      color: $spotify-branco;
+    }
+
+    #notifications {
+      background-color: $spotify-preto;
+      border-radius: 9999px;
+      height: 2rem;
+      width: 2rem;
+    }
+
+    #profile {
+      background-color: $spotify-preto;
+      border-radius: 9999px;
+      height: 2rem;
+      width: 2rem;
+    }
+  }
 }
