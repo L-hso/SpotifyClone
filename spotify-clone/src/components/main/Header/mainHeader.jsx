@@ -30,7 +30,7 @@ export function MainHeader() {
         </li>
         <li>
           <button id="profile">
-            <img src="#" alt="" />
+            <img src="https://pbs.twimg.com/media/EovVI0YXUAIJJ3U.jpg" alt="" />
           </button>
         </li>
       </menu>

@@ -5,7 +5,7 @@ import { MainGradientController } from "./mainGradientController";
 export const MainGradientColorContext = createContext();
 
 export function MainRoot({ children }) {
-  const [gradientColor, setGradientColor] = useState("#181818");
+  const [gradientColor, setGradientColor] = useState("#383838");
 
   return (
     <MainGradientColorContext.Provider

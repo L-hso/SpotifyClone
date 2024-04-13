@@ -36,6 +36,7 @@
       font-weight: 600;
       font-size: 0.85rem;
       width: 100%;
+
       display: -webkit-box;
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 2;
@@ -43,9 +44,13 @@
     }
 
     .recent_thumbnail {
+      flex-shrink: 0;
+      
       width: 3rem;
       height: 3rem;
-      flex-shrink: 0;
+      border-radius: .25rem;
+
+      box-shadow: 4px 0 10px 3px rgba(0, 0, 0, 0.13);
     }
 
     &:hover .play_button {
