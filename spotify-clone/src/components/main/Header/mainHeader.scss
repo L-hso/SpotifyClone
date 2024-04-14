@@ -9,10 +9,12 @@
 #main_content_header {
   @include flexBox(space-between, center);
   width: 100%;
-  padding: 1rem 0;
+  padding: 1rem;
 
   position: sticky;
   top:0;
+  
+  z-index: 2;
   
   button {
     &:hover {

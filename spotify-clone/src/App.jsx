@@ -1,17 +1,17 @@
 import { Main } from "./components/main/Widget";
 import { Footer } from "./components/footer/Widget";
 import { Sidebar } from "./components/sidebar/Widget";
+import { FakeCollection } from "./components/main/mainFakeData";
 import { LayoutSizeController } from "./components/layoutSizeController/layoutSizeController";
 import { createContext, useState } from "react";
 
 export const layoutSizeContext = createContext();
-function App() {
 
+function App() {
   const [layoutSize, setLayoutSize] = useState(350);
 
-
   return (
-    <layoutSizeContext.Provider value={{layoutSize, setLayoutSize}}>
+    <layoutSizeContext.Provider value={{ layoutSize, setLayoutSize }}>
       <Sidebar.Root>
         <Sidebar.Top />
         <Sidebar.Bottom />
@@ -20,8 +20,16 @@ function App() {
       <LayoutSizeController />
 
       <Main.Root>
-        <Main.Header/>
-        <Main.Recent/>
+        <Main.Header />
+        <Main.Recent />
+        <Main.CollectionsWrapper>
+        {Object.entries(FakeCollection).map(([collectionTitle, fakeData]) => (
+          <Main.Collection
+            {...{ collectionTitle, fakeData }}
+            key={collectionTitle}
+          />
+        ))}
+        </Main.CollectionsWrapper>
       </Main.Root>
 
       <Footer.Root>

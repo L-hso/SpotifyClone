@@ -6,6 +6,12 @@
   align-items: $align;
 }
 
+article{
+  width: 100%; 
+  padding: 0 1rem;
+}
+
+
 #recent_playlists_and_mixes {
   --column_amount: 4;
   width: 100%;
@@ -35,7 +41,7 @@
     .recent_title {
       font-weight: 600;
       font-size: 0.85rem;
-      width: 100%;
+      width: calc(100% - 7rem);
 
       display: -webkit-box;
       -webkit-box-orient: vertical;

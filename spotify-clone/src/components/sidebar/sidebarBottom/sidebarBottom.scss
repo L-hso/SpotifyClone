@@ -1,6 +1,6 @@
 @import "../../spotify-colors";
 
-@mixin flexBox($just, $align){
+@mixin flexBox($just, $align) {
   display: flex;
   justify-content: $just;
   align-items: $align;
@@ -12,20 +12,14 @@
   position: relative;
   overflow: hidden;
 
-  
-
   #library {
     --dynamicDisplay: flex;
     @include flexBox(start, center);
     flex-direction: column;
     flex: 1;
     width: 100%;
+
     
-    scrollbar-color: lighten($color: $spotify-cinza, $amount: 25) $spotify-cinza;
     overflow: auto;
-
-    
-
-
   }
 }

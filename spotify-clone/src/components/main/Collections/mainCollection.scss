@@ -1,0 +1,133 @@
+@import "../../spotify-colors";
+#collections_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  margin-top: 2.75rem;
+  width: 100%;
+
+  padding: 0 1rem 1rem 1rem;
+}
+
+.collection {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 1rem;
+
+  width: 100%;
+
+  height: minmax(9rem, 18rem);
+  
+  overflow: hidden;
+  .collection_header_wrapper{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    .collection_title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      cursor: pointer;
+  
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .collection_show_all{
+      font-size: .85rem;
+      font-weight: 700;
+      color: lighten($color: $spotify-grafite, $amount: 50);
+      transition: 0.13s color ease;
+
+      &:hover{
+        color: lighten($color: $spotify-grafite, $amount: 75);
+      }
+    }
+  }
+
+  .collection_list {
+    --collection-list-columns: 5;
+
+    display: grid;
+    grid-template-columns: repeat(var(--collection-list-columns), 1fr);
+    grid-template-rows: 1fr;
+    gap: 1rem;
+
+    width: 100%;
+    height: 100%;
+
+    .items {
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      justify-content: start;
+      gap: 0.5rem;
+
+      height: 100%;
+      padding: 0.5rem;
+      border-radius: 0.25rem;
+
+      cursor: pointer;
+
+      &:hover {
+        background-color: lighten($color: $spotify-cinza, $amount: 4);
+      }
+
+      &:hover .play_button{
+        display: flex;
+      }
+
+      .play_button {
+        display: none;
+        justify-content: center;
+        align-items: center;
+
+        width: 2.75rem;
+        height: 2.75rem;
+        border-radius: 9999px;
+
+        background: darken($color: $spotify-verde, $amount: 2);
+
+        box-shadow: 0 3px 5px 4px rgba(0, 0, 0, 0.33);
+
+        position: absolute;
+        bottom: 0.5rem;
+        right: 0.5rem;
+
+        svg {
+          margin-left: 0.2rem;
+        }
+      }
+
+      .thumbnail {
+        width: 100%;
+        aspect-ratio: 1/1;
+
+        background-color: crimson;
+        border: 1px solid #000;
+        border-radius: 0.35rem;
+      }
+
+      hgroup {
+        span {
+          display: block;
+
+          &:last-child {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
+
+            margin-top: 0.25rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: lighten($color: $spotify-grafite, $amount: 50);
+          }
+        }
+      }
+    }
+  }
+}

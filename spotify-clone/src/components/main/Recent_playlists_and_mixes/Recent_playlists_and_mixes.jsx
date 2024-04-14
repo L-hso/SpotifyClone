@@ -23,7 +23,7 @@ export function Recent_playlists_and_mixes() {
                  values.color
               )
             }
-            onMouseLeave={()=>setGradientColor("#383838")}
+            
           >
             <img src={values.thumbnail} alt="" className="recent_thumbnail" />
             <span className="recent_title">{values.title}</span>

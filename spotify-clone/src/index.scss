@@ -6,10 +6,13 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  text-decoration: none;
   list-style: none;
+  
+  text-decoration: none;
   font-family: "Figtree",sans-serif;
   color: $spotify-branco;
+
+  scrollbar-color: lighten($color: $spotify-cinza, $amount: 25) $spotify-cinza;
 
   button{
     border: none;

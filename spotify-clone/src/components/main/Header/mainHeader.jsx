@@ -2,10 +2,19 @@ import "./mainHeader.scss";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { HiDownload } from "react-icons/hi";
 import { IoNotificationsOutline } from "react-icons/io5";
+import { useContext } from "react";
+import { MainGradientColorContext } from "../mainRoot";
 
 export function MainHeader() {
+  const { gradientColor } = useContext(MainGradientColorContext);
+
   return (
-    <header id="main_content_header">
+    <header
+      id="main_content_header"
+      style={{
+        background: `linear-gradient(to bottom, ${gradientColor}, transparent)`,
+      }}
+    >
       <div id="page_control">
         <button>
           <IoIosArrowBack size={20} />
